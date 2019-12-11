@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Icon } from 'arkade/components/common';
-import { ProgressBar } from '../progress-bar';
+import { Icon, ProgressBar } from 'arkade/components/common';
 
 import './audio.scss';
 
