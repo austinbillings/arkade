@@ -2,7 +2,7 @@
 
 
 ## Installation / setup
-Arkade assumes you're writing ES6 code in the ES6-module style. No transpilation compilation of the source code is necessary.
+Arkade assumes you're writing ES6 code in the ES6-module style. No transpilation or compilation of the source code is necessary, besides whatever methods you're already using to build your app.
 
 Arkade requires a sibling dependency `react` of at least version 16.0.
 
@@ -69,7 +69,7 @@ Custom error types
 - `AppError`
 > A generic error type, which accepts an error message AND arbitrary contextual data you can extract and use later in your execution. Effectively allows you to tie-in any necessary metadata when you throw an error.
 
- > ```
+ ```
  function myAsyncFunc() {
    if (!someService.started) throw new AppError('Some service failed to start', { serviceId, requestContext })
    ...
