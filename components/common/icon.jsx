@@ -1,8 +1,6 @@
 // ∆
 import React from 'react';
 
-import 'fontawesome';
-
 export const ImageIcon = ({ image, onClick, className, name, style = {} }) => (
   <img
     src={image}
