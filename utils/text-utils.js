@@ -73,13 +73,13 @@ export function forceSnakeCase (value) {
         .join('');
 }
 
-export function cleanTagList(tagList) {
+export function cleanTagList (tagList) {
     return !angular.isArray(tagList)
         ? []
         : tagList.filter(isString).map(tagName => tagName.toLowerCase());
 }
 
-export function stripHtmlTags(html, allowTags = [], keepAttributes) {
+export function stripHtmlTags (html, allowTags = [], keepAttributes = false) {
     const allowedTags = allowTags.filter(isString).map(t => t.toLowerCase());
     const tagPattern = /<(\/?[a-zA-Z-]+) ?(?: [a-zA-Z0-9]+[a-zA-Z0-9-]*(?:="[^"]*")?)*\/?>/g;
 
