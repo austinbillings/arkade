@@ -1,0 +1,38 @@
+.modal-body {
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  min-width: 550px;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  .modal-top {
+    display: flex;
+    margin-top: 40px;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: space-between;
+
+    .icon.fa-close {
+      font-size: 1.2em;
+    }
+
+    * {
+      flex: 0 0 auto;
+    }
+  }
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    padding: 40px 10px;
+    margin-bottom: 50px;
+  }
+}
