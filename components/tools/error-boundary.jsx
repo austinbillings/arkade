@@ -24,7 +24,7 @@ export class ErrorBoundary extends React.Component {
         const displayableError = caughtError || error;
 
         return !displayableError ? children : (
-            <div className="border-danger pad-30 stack" style={{ borderWidth: '5px', height: '100vh' }}>
+            <div className="border-danger pad-30 stack" style={{ borderWidth: '5px', height: '100vh', flexWrap: 'nowrap' }}>
                 <p className="text-engraved text-danger margin-0">
                     Error encountered
                 </p>
