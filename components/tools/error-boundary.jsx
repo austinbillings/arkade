@@ -43,7 +43,9 @@ export class ErrorBoundary extends React.Component {
 
                 <h6 className="text-subtle">Stack trace</h6>
                 <small>
-                    <blockquote className="border-color-warning">{error.stack}</blockquote>
+                    <blockquote className="border-color-warning">
+                        <code>{error.stack}</code>
+                    </blockquote>
                 </small>
             </div>
         );
