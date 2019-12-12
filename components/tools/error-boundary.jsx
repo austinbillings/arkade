@@ -29,22 +29,22 @@ export class ErrorBoundary extends React.Component {
                     Error encountered
                 </p>
 
-                {error.message && <h2 className="text-italic">{error.message}</h2>}
+                {displayableError.message && <h2 className="text-italic">{displayableError.message}</h2>}
 
                 <h6 className="text-subtle">Location</h6>
-                <h5>{error.fileName} <br/> Line {error.lineNumber}, column {error.columnNumber}</h5>
+                <h5>{displayableError.fileName} <br/> Line {displayableError.lineNumber}, column {displayableError.columnNumber}</h5>
 
-                {error.contextData && (
+                {displayableError.contextData && (
                     <Fragment>
                         <h6 className="text-subtle">Context data</h6>
-                        <Inspector data={error.contextData}/>
+                        <Inspector data={displayableError.contextData}/>
                     </Fragment>
                 )}
 
                 <h6 className="text-subtle">Stack trace</h6>
                 <small>
                     <blockquote className="border-color-warning">
-                        <code>{error.stack}</code>
+                        <code>{displayableError.stack}</code>
                     </blockquote>
                 </small>
             </div>
