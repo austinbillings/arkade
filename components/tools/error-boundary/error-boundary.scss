@@ -1,0 +1,12 @@
+.error-boundary-wrapper {
+    border-width: 3px;
+    height: 100vh;
+    flex-wrap: nowrap;
+    overflow: auto;
+}
+
+.error-boundary-header {
+    align-self: flex-start;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+}
