@@ -7,11 +7,11 @@ export class ErrorBoundary extends React.Component {
     constructor (props) {
         super(props);
 
-        this.state = { caughtError: null };
+        this.state = { hasError: !!props.error, caughtError: null };
     }
 
     static getDerivedStateFromError(caughtError) {
-        return { caughtError };
+        return { hasError: true, caughtError };
     }
 
     componentDidCatch(error, errorInfo) {
@@ -20,39 +20,44 @@ export class ErrorBoundary extends React.Component {
 
     render () {
         const { children, error } = this.props;
-        const { caughtError } = this.state;
-
+        const { hasError, caughtError } = this.state;
         const displayableError = caughtError || error;
 
-        return !displayableError ? children : (
-            <div className="border-danger pad-30 stack error-boundary-wrapper">
-                <p className="text-engraved margin-0">
-                    Exception
-                </p>
+        try {
+            return !hasError && !displayableError ? children : (
+                <div className="border-danger pad-30 stack error-boundary-wrapper">
+                    <p className="text-engraved margin-0">
+                        Exception
+                    </p>
 
-                {displayableError.message && (
-                    <h2 className="text-italic border-color-danger error-boundary-header">
-                        {displayableError.message}
-                    </h2>
-                )}
+                    {displayableError.message && (
+                        <h2 className="text-italic border-color-danger error-boundary-header">
+                            {displayableError.message}
+                        </h2>
+                    )}
 
-                <h6 className="text-subtle margin-top-20 margin-bottom-0">Location</h6>
-                <h5>{displayableError.fileName} <br/> Line {displayableError.lineNumber}, column {displayableError.columnNumber}</h5>
+                    <h6 className="text-subtle margin-top-20 margin-bottom-0">Location</h6>
+                    <h5>{displayableError.fileName} <br/> Line {displayableError.lineNumber}, column {displayableError.columnNumber}</h5>
 
-                {displayableError.contextData && (
-                    <Fragment>
-                        <h6 className="text-subtle margin-top-20 margin-bottom-0">Context data</h6>
-                        <Inspector data={displayableError.contextData}/>
-                    </Fragment>
-                )}
+                    {displayableError.contextData && (
+                        <Fragment>
+                            <h6 className="text-subtle margin-top-20 margin-bottom-0">Context data</h6>
+                            <Inspector data={displayableError.contextData}/>
+                        </Fragment>
+                    )}
 
-                <h6 className="text-subtle margin-top-20 margin-bottom-0">Stack trace</h6>
-                <small>
-                    <blockquote className="border-color-warning">
-                        <code>{displayableError.stack}</code>
-                    </blockquote>
-                </small>
-            </div>
-        );
+                    <h6 className="text-subtle margin-top-20 margin-bottom-0">Stack trace</h6>
+                    <small>
+                        <blockquote className="border-color-warning">
+                            <code>{displayableError.stack}</code>
+                        </blockquote>
+                    </small>
+                </div>
+            );
+        } catch (err) {
+            this.setState({ hasError: true, caughtError: err });
+
+            return null;
+        }
     }
 };
