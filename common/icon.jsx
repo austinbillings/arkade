@@ -6,7 +6,7 @@ export const ImageIcon = ({ image, onClick, className, name, style = {} }) => (
     src={image}
     onClick={onClick}
     alt={name || '(Image Icon)'}
-    className={`icon icon-image ${className || ''}`}
+    className={`ak-icon ak-icon-image ${className || ''}`}
     style={{ height: '1em', ...style }}
   />
 );
@@ -16,7 +16,7 @@ export const FontAwesomeIcon = ({ fa, onClick, name, className, style }) => (
     style={style}
     onClick={onClick}
     title={name || '(Symbol icon)'}
-    className={`icon icon-fa fa fa-${fa} ${className || ''}`}
+    className={`ak-icon ak-icon-fa fa fa-${fa} ${className || ''}`}
   />
 );
 
