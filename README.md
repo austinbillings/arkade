@@ -15,8 +15,8 @@ In your project:
 ```js
 import React from 'react';
 
-import { Icon } from 'arkade/components/common';
-import { CoverVideo } from 'arkade/components/media';
+import { Icon } from 'arkade/common';
+import { CoverVideo } from 'arkade/media';
 
 export const MyComponent = ({ someProp }) => {
     const videoSources = [
@@ -40,19 +40,19 @@ export const MyComponent = ({ someProp }) => {
 
 ## Components
 
-### from `arkade/components/common`
+### from `arkade/common`
 
 - `<ProgressBar />`
 - `<Icon />`
 - `<FontAwesomeIcon />`
 - `<ImageIcon />`
 
-### from `arkade/components/media`
+### from `arkade/media`
 
 - `<Audio />`
 - `<CoverVideo />`
 
-### from `arkade/components/tools`
+### from `arkade/tools`
 
 - `<ModalBody />`
 - `<ModalWrapper />`
