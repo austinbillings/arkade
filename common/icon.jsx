@@ -16,7 +16,7 @@ export const FontAwesomeIcon = ({ fa, onClick, name, className, style = {}, ...r
   <i
     style={style}
     onClick={onClick}
-    title={name || '(Symbol icon)'}
+    title={name || `(${fa} symbol icon)`}
     className={`ak-icon ak-icon-fa fa fa-${fa} ${className || ''}`}
     {...rest}
   />
