@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Icon } from 'arkade/components/common';
+import { Icon } from 'arkade/common';
 
 import './modal-body.scss';
 
