@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
 
 import './error-boundary.scss';
-import { Inspector } from '../inspector';
+import { Inspector } from 'arkade/tools/inspector';
+import { Icon } from 'arkade/common';
 
 export class ErrorBoundary extends React.Component {
     constructor (props) {
@@ -11,7 +12,7 @@ export class ErrorBoundary extends React.Component {
     }
 
     static getDerivedStateFromError(caughtError) {
-        return { hasError: true, caughtError };
+        return { hasError: true, caughtError: caughtError };
     }
 
     componentDidCatch(error, errorInfo) {
@@ -23,41 +24,44 @@ export class ErrorBoundary extends React.Component {
         const { hasError, caughtError } = this.state;
         const displayableError = caughtError || error;
 
-        try {
-            return !hasError && !displayableError ? children : (
-                <div className="border-danger pad-30 stack error-boundary-wrapper">
-                    <p className="text-engraved margin-0">
-                        Exception
-                    </p>
+        return !hasError && !displayableError ? children : (
+            <div className="border-danger pad-30 stack error-boundary-wrapper">
+                <p className="text-engraved margin-0">
+                    Exception
+                </p>
 
-                    {displayableError.message && (
-                        <h2 className="text-italic border-color-danger error-boundary-header">
-                            {displayableError.message}
-                        </h2>
-                    )}
+                {displayableError.message && (
+                    <h2 className="text-italic border-color-danger error-boundary-header">
+                        {displayableError.message}
+                    </h2>
+                )}
 
-                    <h6 className="text-subtle margin-top-20 margin-bottom-0">Location</h6>
-                    <h5>{displayableError.fileName} <br/> Line {displayableError.lineNumber}, column {displayableError.columnNumber}</h5>
+                <h6 className="text-subtle margin-top-20 margin-bottom-0">Location</h6>
+                <h5>{displayableError.fileName} <br/> Line {displayableError.lineNumber}, column {displayableError.columnNumber}</h5>
 
-                    {displayableError.contextData && (
-                        <Fragment>
-                            <h6 className="text-subtle margin-top-20 margin-bottom-0">Context data</h6>
-                            <Inspector data={displayableError.contextData}/>
-                        </Fragment>
-                    )}
+                {displayableError.contextData && (
+                    <Fragment>
+                        <h6 className="text-subtle margin-top-20 margin-bottom-0">Context data</h6>
+                        <Inspector data={displayableError.contextData}/>
+                    </Fragment>
+                )}
 
-                    <h6 className="text-subtle margin-top-20 margin-bottom-0">Stack trace</h6>
+                <div>
+                    <button className="btn btn-primary" onClick={() => window.location.href = window.location.href}>
+                        <Icon fa="refresh"/>
+                        <span>Reload the page</span>
+                    </button>
+                </div>
+
+                <details>
+                    <summary><h6 className="text-subtle margin-top-20 margin-bottom-0" style={{display:'inline-block'}}>Stack trace</h6></summary>
                     <small>
                         <blockquote className="border-color-warning">
                             <code>{displayableError.stack}</code>
                         </blockquote>
                     </small>
-                </div>
-            );
-        } catch (err) {
-            this.setState({ hasError: true, caughtError: err });
-
-            return null;
-        }
+                </details>
+            </div>
+        );
     }
 };
