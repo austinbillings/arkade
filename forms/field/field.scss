@@ -1,0 +1,44 @@
+.ak-field {
+    display: flex;
+    flex: 1;
+    align-self: stretch;
+    flex-direction: column;
+    margin-bottom: 5px;
+
+    .ak-field-label {
+        margin: 15px 0 6px;
+        position: relative;
+
+        .ak-field-label-text {
+            font-size: 1em;
+        }
+
+        .ak-field-required-indicator {
+            color: firebrick;
+        }
+    }
+
+    .ak-field-content {
+        display: flex;
+        flex-direction: row;
+        border: 1px solid white;
+        border-radius: 5px 0 0 5px;
+        align-items: center;
+    }
+
+    .ak-field-icon {
+        font-size: 1.2em;
+        opacity: 0.5;
+        padding: 0.3em 0.8em;
+        margin-left: 0;
+    }
+
+    .ak-field-input {
+        flex: 1;
+    }
+
+    .ak-validation-error {
+        padding: 4px 0;
+        color: firebrick;
+    }
+}

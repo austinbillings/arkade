@@ -1,46 +1,80 @@
-import React from 'react';
-import { isFunction } from '../../../../utils/type-utils';
+import React, { useMemo, useState, useCallback } from 'react';
 
-const defaultApplyChange = (modelKey) => (value, model = {}) => ({ ...model, [modelKey]: value });
+import './field.scss';
 
-export const Field = (fieldProps = {}) => {
+import { Icon } from 'arkade/common';
+import { getFieldErrors } from 'arkade/utils/form-utils';
+import { isObject, isFunction, isDefined } from 'arkade/utils/type-utils';
+
+import { Input } from '../input/input';
+import { ValidationMessage } from '../validation-message/validation-message';
+
+const defaultApplyChange = (modelKey) => (value, model = {}) => (
+    { ...model, [modelKey]: value }
+);
+
+export const Field = ({ model, fieldConfig = {}, onChange, className }) => {
     const {
-        model,
         modelKey,
         label,
         icon,
+        props = {},
         type = 'text',
         defaultValue = null,
-        props = {},
         optional = false,
         validate,
         applyChange,
-        ...rest
-    } = fieldProps;
+        ...otherFieldProps
+    } = fieldConfig;
 
-    let { applyChange, props = {} } = fieldProps;
-
-    applyChange = isFunction(applyChange) ? applyChange : defaultApplyChange(modelKey);
-
-    const { className = '', ...inputProps } = props;
+    const { className: inputClassName, ...inputProps } = props;
     const value = isObject(model) && isDefined(model[modelKey]) ? model[modelKey] : defaultValue;
+    const initialValue = useMemo(() => value, [true])
+    const [ hasBlurred, setBlurred ] = useState(false);
+
+    const validationError = getFieldErrors(model, fieldConfig);
+    const hasChanged = value !== initialValue;
+
+    const applyChangeToModel = isFunction(applyChange) ? applyChange : defaultApplyChange(modelKey);
+
+    const handleChange = value => {
+        return isFunction(onChange)
+            ? onChange(applyChangeToModel(value, model))
+            : null;
+    }
+
+    const handleBlur = evt => setBlurred(true);;
 
     return (
-        <div className="ak-field" {...rest}>
+        <div className="ak-field" {...otherFieldProps}>
             <label className="ak-field-label">
-                {icon && <Icon className="ak-field-label-icon" fa={icon}/>}
                 {label && (
-                    <strong className="ak-field-label-text">
+                    <span className="ak-field-label-text">
                         {label}
                         {' '}
-                        {!optional && <span className="ak-field-required-indicator">*</span>}
-                    </strong>
+                        {!optional && <span className="ak-field-required-indicator" title="This is a required field">*</span>}
+                    </span>
                 )}
             </label>
 
-            <Input type={type} className={`ak-field-input ${className}`} value={} {...inputProps} />
 
+            <div className="ak-field-content">
+                {icon && <Icon className="ak-field-icon" fa={icon}/>}
+                <Input
+                    type={type}
+                    value={value}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={`ak-field-input ${inputClassName}`}
+                    {...inputProps}
+                />
+            </div>
 
+            {validationError && hasBlurred && (
+                <ValidationMessage kind="error">
+                    {validationError.message}
+                </ValidationMessage>
+            )}
         </div>
     )
 };

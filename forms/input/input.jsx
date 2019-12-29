@@ -1,10 +1,12 @@
 import React from 'react';
 
-export const Input = ({ type, value, onChange, ...rest }) => {
+import './input.scss';
+import { isFunction } from 'arkade/utils/type-utils';
+
+export const Input = ({ type, value, onChange, className, ...rest }) => {
     const handleChange = isFunction(onChange)
         ? (newValue) => onChange(newValue)
         : (newValue) => null;
-
 
     switch (type) {
         case 'password':
@@ -15,7 +17,9 @@ export const Input = ({ type, value, onChange, ...rest }) => {
                 <input
                     value={value}
                     type={type || 'text'}
+                    className={`ak-input ${className}`}
                     onChange={({ target }) => onChange(target.value)}
+                    {...rest}
                 />
             );
     }
