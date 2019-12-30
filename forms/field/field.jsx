@@ -30,25 +30,28 @@ export const Field = ({ model, fieldConfig = {}, onChange, className }) => {
     const { className: inputClassName, ...inputProps } = props;
     const value = isObject(model) && isDefined(model[modelKey]) ? model[modelKey] : defaultValue;
     const initialValue = useMemo(() => value, [true])
-    const [ hasBlurred, setBlurred ] = useState(false);
+    const [ fieldState, setFieldState ] = useState({ hasChanged: false, hasFocused: false, hasBlurred: false });
 
     const validationError = getFieldErrors(model, fieldConfig);
     const hasChanged = value !== initialValue;
 
     const applyChangeToModel = isFunction(applyChange) ? applyChange : defaultApplyChange(modelKey);
 
-    const handleChange = value => {
+    const handleChange = newValue => {
+        if (!fieldState.hasChanged) setTimeout(setFieldState({ ...fieldState, hasChanged: true }), 1500);
+
         return isFunction(onChange)
-            ? onChange(applyChangeToModel(value, model))
+            ? onChange(applyChangeToModel(newValue, model))
             : null;
     }
 
-    const handleBlur = evt => setBlurred(true);;
+    const handleFocus = evt => !fieldState.hasFocused ? setFieldState({ ...fieldState, hasFocused: true }) : null;
+    const handleBlur = evt => !fieldState.hasBlurred ? setFieldState({ ...fieldState, hasBlurred: true }) : null;
 
     return (
         <div className="ak-field" {...otherFieldProps}>
             <label className="ak-field-label">
-                {label && (
+                {label && (!props || !props.placeholder) && (
                     <span className="ak-field-label-text">
                         {label}
                         {' '}
@@ -65,16 +68,15 @@ export const Field = ({ model, fieldConfig = {}, onChange, className }) => {
                     value={value}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    onFocus={handleFocus}
                     className={`ak-field-input ${inputClassName}`}
                     {...inputProps}
                 />
             </div>
 
-            {validationError && hasBlurred && (
-                <ValidationMessage kind="error">
-                    {validationError.message}
-                </ValidationMessage>
-            )}
+            <ValidationMessage visible={validationError && fieldState.hasChanged && fieldState.hasBlurred && fieldState.hasFocused} kind="error">
+                {validationError ? validationError.message : ''}
+            </ValidationMessage>
         </div>
     )
 };

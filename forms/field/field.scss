@@ -6,7 +6,7 @@
     margin-bottom: 5px;
 
     .ak-field-label {
-        margin: 15px 0 6px;
+        margin: 10px 0 6px;
         position: relative;
 
         .ak-field-label-text {
@@ -35,10 +35,5 @@
 
     .ak-field-input {
         flex: 1;
-    }
-
-    .ak-validation-error {
-        padding: 4px 0;
-        color: firebrick;
     }
 }

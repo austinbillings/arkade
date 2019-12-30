@@ -5,7 +5,7 @@ import './form.scss';
 import { FormAction } from '../form-action/form-action';
 import { Fieldset } from '../fieldset/fieldset';
 import { ValidationMessage } from '../validation-message/validation-message';
-import { useModel } from 'arkade/utils/form-utils';
+import { useModel } from 'arkade/hooks';
 
 export const Form = ({
     initialData = {},
@@ -42,7 +42,7 @@ export const Form = ({
                 onModelChange={handleModelChange}
             />
             {showPreventativeErrors && modelErrors.map((error, index) => (
-                <ValidationMessage kind="error" key={index} children={error.message} />
+                <ValidationMessage kind="error" key={index} visible={true} children={error.message} />
             ))}
             {children && (
                 <legend className="ak-form-legend">

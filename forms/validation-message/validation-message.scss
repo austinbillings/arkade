@@ -6,6 +6,7 @@
     margin: 0.5em 0;
     border-radius: 3px;
     padding: 0.5em 1em;
+    transition: all 0.7s;
 
     .ak-icon {
         margin-right: 0.7em;
@@ -18,5 +19,16 @@
 
     .ak-validation-message-text {
         font-weight: normal;
+    }
+
+    opacity: 1;
+    max-height: 100px;
+
+    &--hidden {
+        height: 0;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        max-height: 0;
     }
 }
