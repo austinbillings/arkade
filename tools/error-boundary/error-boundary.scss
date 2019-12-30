@@ -1,8 +1,13 @@
 .error-boundary-wrapper {
     border-width: 3px;
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
     flex-wrap: nowrap;
     overflow: auto;
+
+    &.full-page-boundary {
+        height: 100vh;
+    }
 }
 
 .error-boundary-header {

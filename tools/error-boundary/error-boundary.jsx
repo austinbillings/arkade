@@ -20,12 +20,12 @@ export class ErrorBoundary extends React.Component {
     }
 
     render () {
-        const { children, error } = this.props;
+        const { children, error, className } = this.props;
         const { hasError, caughtError } = this.state;
         const displayableError = caughtError || error;
 
         return !hasError && !displayableError ? children : (
-            <div className="border-danger pad-30 stack error-boundary-wrapper">
+            <div className={`border-danger pad-30 error-boundary-wrapper ${className || ''}`}>
                 <p className="text-engraved margin-0">
                     Exception
                 </p>
