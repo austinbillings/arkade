@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { isFunction, isArray, isDefined, isNull } from './type-utils';
 
 export function getFieldErrors (model, field) {
@@ -8,15 +7,15 @@ export function getFieldErrors (model, field) {
 
     const currentValue = model[field.modelKey];
 
+    if (!field.optional && (!isDefined(currentValue) || isNull(currentValue) || currentValue === '')) {
+        return new Error(`${field.label || field.modelKey} is a required field`);
+    }
+
     try {
         if (isFunction(field.validate)) {
             field.validate(currentValue, model);
         }
     } catch (e) { return e; }
-
-    if (!field.optional && (!isDefined(currentValue) || isNull(currentValue) || currentValue === '')) {
-        return new Error(`${field.label || field.modelKey} is a required field`);
-    }
 
     return null;
 }
@@ -55,11 +54,4 @@ export function generateModelFromFields (fields, initialData = {}) {
 
         return { ...output, ...subModel };
     }, {});
-}
-
-export function useModel (fields, initialData) {
-    const [model, setModel] = useState({ ...generateModelFromFields(fields, initialData), ...initialData });
-    const errors = getFieldsetErrors(model, fields);
-
-    return [model, errors, setModel];
 }
