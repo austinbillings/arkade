@@ -27,12 +27,12 @@ export class ErrorBoundary extends React.Component {
         return !hasError && !displayableError ? children : (
             <div className={`border-danger pad-30 error-boundary-wrapper ${className || ''}`}>
                 <p className="text-engraved margin-0">
-                    Exception
+                    <Icon fa="exclamation-triangle" /> Exception
                 </p>
 
                 {displayableError.message && (
                     <h2 className="text-italic border-color-danger error-boundary-header">
-                        {displayableError.message}
+                        <Icon fa="exclamation-circle" className="text-danger" /> {displayableError.message}
                     </h2>
                 )}
 
