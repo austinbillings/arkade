@@ -36,8 +36,16 @@ export class ErrorBoundary extends React.Component {
                     </h2>
                 )}
 
-                <h6 className="text-subtle margin-top-20 margin-bottom-0">Location</h6>
-                <h5>{displayableError.fileName} <br/> Line {displayableError.lineNumber}, column {displayableError.columnNumber}</h5>
+		{(displayableError.fileName || displayableError.columnNumber) && (
+                    <h6 className="text-subtle margin-top-20 margin-bottom-0">
+		        Location
+		    </h6>
+                    <h5>
+		         {displayableError.fileName}
+		         <br/>
+		         Line {displayableError.lineNumber}, column {displayableError.columnNumber}
+		    </h5>
+		)}
 
                 {displayableError.contextData && (
                     <Fragment>
