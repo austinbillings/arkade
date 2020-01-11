@@ -1,0 +1,43 @@
+@import './reset';
+@import './colors';
+@import './buttons';
+@import './fonts';
+@import './typography';
+@import './margins';
+@import './padding';
+@import './animations';
+@import './mixins';
+
+html {
+  @media (min-width: 992px) { font-size: 14px; }
+  @media (max-width: 992px) { font-size: 13px; }
+  @media (max-width: 768px) { font-size: 12px; }
+}
+
+body {
+  color: $main-text-color;
+  background-color: $main-background-color;
+}
+
+a {
+    color: currentColor;
+    &, &:link, &:active, &:hover { cursor: pointer; }
+}
+
+hr {
+  border: none;
+  width: 100%;
+  margin: 0;
+  border-bottom: 1px solid $main-border-color;
+}
+
+article {
+  display: block;
+  padding: 3em;
+  box-shadow: inset 0 0 5vw fade-out(darken($main-background-color, 3%), 0.9);
+}
+
+code, keygen, textarea {
+    font-size: 12px;
+    line-height: 1.6em;
+}

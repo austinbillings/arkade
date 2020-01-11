@@ -1,0 +1,80 @@
+@mixin padding-top($amount) { padding-top: $amount; }
+@mixin padding-left($amount) { padding-left: $amount; }
+@mixin padding-right($amount) { padding-right: $amount; }
+@mixin padding-bottom($amount) { padding-bottom: $amount; }
+
+@mixin padding-all($amount) { padding: $amount $amount $amount $amount; }
+@mixin padding-vertical($amount) { padding-top: $amount; padding-bottom: $amount; }
+@mixin padding-horizontal($amount) { padding-left: $amount; padding-right: $amount; }
+
+// sass-lint:disable brace-style
+.pad-0 { @include padding-all(0); }
+.pad-5 { @include padding-all(5px); }
+.pad-10 { @include padding-all(10px); }
+.pad-15 { @include padding-all(15px); }
+.pad-20 { @include padding-all(20px); }
+.pad-25 { @include padding-all(25px); }
+.pad-30 { @include padding-all(30px); }
+.pad-40 { @include padding-all(40px); }
+.pad-50 { @include padding-all(50px); }
+
+.pad-top-0 { @include padding-top(0); }
+.pad-top-5 { @include padding-top(5px); }
+.pad-top-10 { @include padding-top(10px); }
+.pad-top-15 { @include padding-top(15px); }
+.pad-top-20 { @include padding-top(20px); }
+.pad-top-25 { @include padding-top(25px); }
+.pad-top-30 { @include padding-top(30px); }
+.pad-top-40 { @include padding-top(40px); }
+.pad-top-50 { @include padding-top(50px); }
+
+.pad-bottom-0 { @include padding-bottom(0); }
+.pad-bottom-5 { @include padding-bottom(5px); }
+.pad-bottom-10 { @include padding-bottom(10px); }
+.pad-bottom-15 { @include padding-bottom(15px); }
+.pad-bottom-20 { @include padding-bottom(20px); }
+.pad-bottom-25 { @include padding-bottom(25px); }
+.pad-bottom-30 { @include padding-bottom(30px); }
+.pad-bottom-40 { @include padding-bottom(40px); }
+.pad-bottom-50 { @include padding-bottom(50px); }
+
+.pad-left-0 { @include padding-left(0); }
+.pad-left-5 { @include padding-left(5px); }
+.pad-left-10 { @include padding-left(10px); }
+.pad-left-15 { @include padding-left(15px); }
+.pad-left-20 { @include padding-left(20px); }
+.pad-left-25 { @include padding-left(25px); }
+.pad-left-30 { @include padding-left(30px); }
+.pad-left-40 { @include padding-left(40px); }
+.pad-left-50 { @include padding-left(50px); }
+
+.pad-right-0 { @include padding-right(0); }
+.pad-right-5 { @include padding-right(5px); }
+.pad-right-10 { @include padding-right(10px); }
+.pad-right-15 { @include padding-right(15px); }
+.pad-right-20 { @include padding-right(20px); }
+.pad-right-25 { @include padding-right(25px); }
+.pad-right-30 { @include padding-right(30px); }
+.pad-right-40 { @include padding-right(40px); }
+.pad-right-50 { @include padding-right(50px); }
+
+.pad-vertical-0 { @include padding-vertical(0); }
+.pad-vertical-5 { @include padding-vertical(5px); }
+.pad-vertical-10 { @include padding-vertical(10px); }
+.pad-vertical-15 { @include padding-vertical(15px); }
+.pad-vertical-20 { @include padding-vertical(20px); }
+.pad-vertical-25 { @include padding-vertical(25px); }
+.pad-vertical-30 { @include padding-vertical(30px); }
+.pad-vertical-40 { @include padding-vertical(40px); }
+.pad-vertical-50 { @include padding-vertical(50px); }
+
+.pad-horizontal-0 { @include padding-horizontal(0); }
+.pad-horizontal-5 { @include padding-horizontal(5px); }
+.pad-horizontal-10 { @include padding-horizontal(10px); }
+.pad-horizontal-15 { @include padding-horizontal(15px); }
+.pad-horizontal-20 { @include padding-horizontal(20px); }
+.pad-horizontal-25 { @include padding-horizontal(25px); }
+.pad-horizontal-30 { @include padding-horizontal(30px); }
+.pad-horizontal-40 { @include padding-horizontal(40px); }
+.pad-horizontal-50 { @include padding-horizontal(50px); }
+// sass-lint:enable brace-style

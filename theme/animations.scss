@@ -1,0 +1,17 @@
+@keyframes revolve-animation {
+    0% { transform: scale(1) rotate(0deg);}
+    50% { transform: scale(0.9) rotate(90deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+@mixin revolve ($duration: 500ms) {
+    transform-origin: center;
+    animation: revolve-animation $duration infinite;
+}
+
+.revolve-500ms { @include revolve(500ms); }
+.revolve-1s { @include revolve(1s); }
+.revolve-1500ms { @include revolve(1500ms); }
+.revolve-2s { @include revolve(2s); }
+.revolve-2500ms { @include revolve(2500ms); }
+.revolve-3s { @include revolve(3s); }

@@ -1,0 +1,77 @@
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.05em;
+  padding: 0.3em 0;
+  margin: 0;
+  line-height: 120%;
+
+  &:first-child { padding-top: 0; }
+  &:last-child { padding-bottom: 0; }
+}
+
+h1 { font-size: 3em; }
+h2 { font-size: 2.5em; }
+h3 { font-size: 2em; }
+h4 { font-size: 1.66em; }
+h5 { font-size: 1.33em; }
+h6 { font-size: 1em; }
+
+
+p {
+  font-weight: 200;
+  margin: 0 0 1em;
+  padding: 0;
+  line-height: 150%;
+
+  &:first-child { margin-top: 0; }
+  &:last-child { margin-bottom: 0; }
+}
+
+b, p b {
+  font-weight: 600;
+}
+
+sup, sub {
+  font-size: 50%;
+  margin: 0 0.1em;
+}
+
+blockquote {
+  margin: 0.5em 0;
+  padding: 1em 2em;
+  border-left: 0.5em solid currentColor;
+
+  p {
+    font-style: italic;
+    font-size: 1.1em;
+  }
+}
+
+.text-italic { font-style: italic; }
+.text-oblique { font-style: oblique; }
+.text-nonitalic { font-style: normal; }
+
+.text-x-small { font-size: 0.6em; }
+.text-small { font-size: 0.8em; }
+.text-large { font-size: 1.2em; }
+.text-x-large { font-size: 1.4em; }
+
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+.text-thin { font-weight: 100; }
+.text-light { font-weight: 300; }
+.text-medium { font-weight: 500; }
+.text-bold { font-weight: 600; }
+.text-heavy { font-weight:800; }
+
+.text-upper { text-transform: uppercase; }
+.text-lower { text-transform: lowercase; }
+
+.text-engraved {
+  letter-spacing: 0.2em;
+  font-weight: 300;
+  transform: scaleY(0.9);
+  opacity: 0.5;
+  text-transform: uppercase;
+}

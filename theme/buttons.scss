@@ -1,0 +1,80 @@
+.btn {
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+  padding: 0.6em 2em;
+  margin: 0.5em 0.3em 0.5em 0;
+
+  &.btn-slim {
+      padding: 0.3em 0.5em;
+      line-height: 1.3em;
+
+      .ak-icon {
+          transform-origin: center center;
+      }
+  }
+
+  .ak-icon {
+      transition: all 0.25s;
+      transform-origin: left center;
+
+      &:first-child:not(:last-child) {
+          padding-right: 1.1em;
+          margin-left: -1.1em;
+      }
+
+      &:last-child:not(:first-child) {
+          padding-left: 1.1em;
+          margin-right: -1.1em;
+      }
+  }
+
+  &:hover {
+      .ak-icon {
+          transform: scale(1.1);
+      }
+  }
+}
+
+@mixin buttonClass ($buttonName, $accent, $text-color: $white, $use-border: false) {
+    .btn.btn-#{$buttonName} {
+        color: $text-color;
+        border: 1px solid $accent;
+        background-color: $accent;
+        border-radius: 5px;
+        transform-origin: center center;
+        transition: background 0.4s, transform 0.6s, border 0.5s, color 0.3s;
+
+        &:hover {
+            border-color: darken($accent, 1%);
+            background-color: lighten(desaturate($accent, 5), 5%);
+        }
+
+        &:active {
+            background-color: darken(desaturate($accent, 20), 5%);
+            transform: scale(0.98);
+        }
+
+        &[disabled] {
+            opacity: 0.7;
+            cursor: not-allowed;
+            background-color: fade-out(saturate($accent, 30), 0.3);
+            border-color: fade-out(desaturate($accent, 30), 0.4);
+        }
+
+        @if $use-border {
+            border-color: $text-color;
+
+            &:hover { border-color: darken($text-color, 1%); }
+            &:active { background-color: darken(desaturate($text-color, 20), 5%); }
+        }
+    }
+}
+
+@mixin buttonClasses ($list) {
+  @each $buttonName, $buttonColors in $list {
+    @include buttonClass($buttonName, $buttonColors...);
+  }
+}
+
+@include buttonClasses($button-flavors);

@@ -1,0 +1,7 @@
+html { font-family: $font-primary; }
+code, textarea, keygen { font-family: $font-monospace; }
+
+@supports (font-variation-settings: normal) {
+  html { font-family: $font-primary; }
+  code, textarea, keygen { font-family: $font-monospace; }
+}

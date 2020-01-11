@@ -1,0 +1,80 @@
+@mixin margin-top($amount) { margin-top: $amount; }
+@mixin margin-left($amount) { margin-left: $amount; }
+@mixin margin-right($amount) { margin-right: $amount; }
+@mixin margin-bottom($amount) { margin-bottom: $amount; }
+
+@mixin margin-all($amount) { margin: $amount $amount $amount $amount; }
+@mixin margin-vertical($amount) { margin-top: $amount; margin-bottom: $amount; }
+@mixin margin-horizontal($amount) { margin-left: $amount; margin-right: $amount; }
+
+// sass-lint:disable brace-style
+.margin-0 { @include margin-all(0); }
+.margin-5 { @include margin-all(5px); }
+.margin-10 { @include margin-all(10px); }
+.margin-15 { @include margin-all(15px); }
+.margin-20 { @include margin-all(20px); }
+.margin-25 { @include margin-all(25px); }
+.margin-30 { @include margin-all(30px); }
+.margin-40 { @include margin-all(40px); }
+.margin-50 { @include margin-all(50px); }
+
+.margin-top-0 { @include margin-top(0); }
+.margin-top-5 { @include margin-top(5px); }
+.margin-top-10 { @include margin-top(10px); }
+.margin-top-15 { @include margin-top(15px); }
+.margin-top-20 { @include margin-top(20px); }
+.margin-top-25 { @include margin-top(25px); }
+.margin-top-30 { @include margin-top(30px); }
+.margin-top-40 { @include margin-top(40px); }
+.margin-top-50 { @include margin-top(50px); }
+
+.margin-bottom-0 { @include margin-bottom(0); }
+.margin-bottom-5 { @include margin-bottom(5px); }
+.margin-bottom-10 { @include margin-bottom(10px); }
+.margin-bottom-15 { @include margin-bottom(15px); }
+.margin-bottom-20 { @include margin-bottom(20px); }
+.margin-bottom-25 { @include margin-bottom(25px); }
+.margin-bottom-30 { @include margin-bottom(30px); }
+.margin-bottom-40 { @include margin-bottom(40px); }
+.margin-bottom-50 { @include margin-bottom(50px); }
+
+.margin-left-0 { @include margin-left(0); }
+.margin-left-5 { @include margin-left(5px); }
+.margin-left-10 { @include margin-left(10px); }
+.margin-left-15 { @include margin-left(15px); }
+.margin-left-20 { @include margin-left(20px); }
+.margin-left-25 { @include margin-left(25px); }
+.margin-left-30 { @include margin-left(30px); }
+.margin-left-40 { @include margin-left(40px); }
+.margin-left-50 { @include margin-left(50px); }
+
+.margin-right-0 { @include margin-right(0); }
+.margin-right-5 { @include margin-right(5px); }
+.margin-right-10 { @include margin-right(10px); }
+.margin-right-15 { @include margin-right(15px); }
+.margin-right-20 { @include margin-right(20px); }
+.margin-right-25 { @include margin-right(25px); }
+.margin-right-30 { @include margin-right(30px); }
+.margin-right-40 { @include margin-right(40px); }
+.margin-right-50 { @include margin-right(50px); }
+
+.margin-vertical-0 { @include margin-vertical(0); }
+.margin-vertical-5 { @include margin-vertical(5px); }
+.margin-vertical-10 { @include margin-vertical(10px); }
+.margin-vertical-15 { @include margin-vertical(15px); }
+.margin-vertical-20 { @include margin-vertical(20px); }
+.margin-vertical-25 { @include margin-vertical(25px); }
+.margin-vertical-30 { @include margin-vertical(30px); }
+.margin-vertical-40 { @include margin-vertical(40px); }
+.margin-vertical-50 { @include margin-vertical(50px); }
+
+.margin-horizontal-0 { @include margin-horizontal(0); }
+.margin-horizontal-5 { @include margin-horizontal(5px); }
+.margin-horizontal-10 { @include margin-horizontal(10px); }
+.margin-horizontal-15 { @include margin-horizontal(15px); }
+.margin-horizontal-20 { @include margin-horizontal(20px); }
+.margin-horizontal-25 { @include margin-horizontal(25px); }
+.margin-horizontal-30 { @include margin-horizontal(30px); }
+.margin-horizontal-40 { @include margin-horizontal(40px); }
+.margin-horizontal-50 { @include margin-horizontal(50px); }
+// sass-lint:enable brace-style

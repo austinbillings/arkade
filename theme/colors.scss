@@ -1,0 +1,15 @@
+@mixin colorClass ($colorName, $color) {
+  .text-#{$colorName} { color: $color; };
+  .background-#{$colorName} { background-color: $color; }
+  .border-#{$colorName} { border: 1px solid $color; }
+  .border-color-#{$colorName} { border-color: $color; }
+}
+
+@mixin colorClasses ($list) {
+  @each $colorName, $color in $list {
+    @include colorClass($colorName, $color);
+  }
+}
+
+@include colorClasses($named-colors);
+@include colorClasses($contextual-colors);
