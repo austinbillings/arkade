@@ -29,7 +29,7 @@ export const Fieldset = ({ model, fields, onModelChange, disabled = false, class
     return (
         <fieldset
             disabled={disabled}
-            className={`ak-fieldset ${className}`}
+            className={`ak-fieldset ${className || ''}`}
             {...rest}>
             {fields.map(renderField)}
         </fieldset>
