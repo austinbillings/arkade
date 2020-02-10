@@ -4,3 +4,4 @@ export { Specimen } from './specimen';
 export { ModalBody } from './modal-body/modal-body';
 export { ModalWrapper } from './modal-wrapper/modal-wrapper';
 export { ErrorBoundary } from './error-boundary/error-boundary';
+export { ScrollWatcher } from './scroll-watcher/scroll-watcher';
