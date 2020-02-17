@@ -1,5 +1,11 @@
 import { isFunction } from './type-utils'
 
+export function isMobile () {
+    return process.browser
+        ? window.matchMedia("only screen and (max-width: 760px)").matches
+        : false
+}
+
 export function scrollWindowTo (yPosition, duration = 400, onComplete) {
     const currentScrollPosition = window.pageYOffset
     const scrollAmount = yPosition - currentScrollPosition
