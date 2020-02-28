@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import './cover-video.scss';
 
-const CoverVideo = ({ children, aspectRatio, sources = [], style = {} }) => {
+export const CoverVideo = ({ children, aspectRatio, sources = [], style = {} }) => {
     const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
 
     const viewportAspectRatio = dimensions.width / dimensions.height;
@@ -49,5 +49,3 @@ const CoverVideo = ({ children, aspectRatio, sources = [], style = {} }) => {
         </div>
     );
 };
-
-export default CoverVideo;
