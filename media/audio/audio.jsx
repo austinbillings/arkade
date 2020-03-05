@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { Icon, ProgressBar } from 'arkade/common';
+import { isFunction } from 'arkade/utils/type-utils';
 
 import './audio.scss';
 
@@ -22,19 +22,29 @@ export class Audio extends React.Component {
 
   componentDidUpdate (oldProps) {
     if (oldProps.src !== this.props.src) {
-      setTimeout(() => { this.handlePlay(); }, 100);
+      setTimeout(() => { this.handlePlay(); }, 200);
     }
   }
 
   componentDidMount () {
     this.player = this.refs.player;
+
     this.player.addEventListener('play', () => {
       this.updatePosition();
       this.setState({ playing: true });
       this.interval = setInterval(this.updatePosition, 1000);
     });
+
     this.player.addEventListener('pause', () => {
       clearInterval(this.interval);
+    });
+
+    this.player.addEventListener('ended', () => {
+      clearInterval(this.interval);
+
+      if (isFunction(this.props.onComplete)) {
+        this.props.onComplete();
+      }
     });
   }
 
@@ -62,17 +72,21 @@ export class Audio extends React.Component {
     if (!this.player || !this.player.duration) return;
     let { currentTime, duration } = this.player;
     let percent = (currentTime / duration * 100).toFixed(2);
+
     return percent;
   }
 
   handlePlay () {
     if (!this.player || !this.player.duration) return;
+
     this.player.play();
+    this.player.autoplay = true;
     this.setState({ playing: true });
   }
 
   handlePause () {
     if (!this.player || !this.player.duration) return;
+
     this.player.pause();
     this.setState({ playing: false });
   }
@@ -80,16 +94,19 @@ export class Audio extends React.Component {
   handleScrub (e) {
     let position = e.scrubPosition;
     let newTime = position * this.player.duration;
+
     this.player.currentTime = newTime;
     this.updatePosition();
   }
 
   getClassName () {
     let className = 'Audio';
+
     if (this.props.className) className += ' ' + this.props.className;
     if (this.state.playing) className += ' playing';
     else if (this.player && this.player.currentTime != 0) className += ' paused';
     if (!this.player || !this.player.duration) className += ' empty';
+
     return className;
   }
 
@@ -99,16 +116,20 @@ export class Audio extends React.Component {
         <box className="Audio-Player">
           <audio className="box" src={this.props.src} ref="player" />
         </box>
+
         <box className="Audio-Controls">
           <Icon fa="backward" onClick={this.handleBackward} />
           <Icon fa="play" onClick={this.handlePlay} />
           <Icon fa="pause" onClick={this.handlePause} />
         </box>
+
         {this.props.title && <b className="Audio-Title">{this.props.title}</b>}
+
         <time className="Audio-Time">
-            {this.state.time}
-            {this.props.length && <span>/{this.props.length}</span>}
+          {this.state.time}
+          {this.props.length && <span>/{this.props.length}</span>}
         </time>
+
         <ProgressBar height={5} color={'rgb(221, 44, 50)'} className="Audio-Progress" percent={this.state.position} interactive onScrub={this.handleScrub} />
       </box>
     )
