@@ -6,6 +6,36 @@ export function isMobile () {
         : false
 }
 
+export function hasClass (element, className) {
+    return element && element.classList.contains(className);
+}
+
+export function addClass (element, className) {
+    return element && element.classList.add(className);
+}
+
+export function removeClass(element, className) {
+    return element && element.classList.remove(className);
+}
+
+export function scrollSnap (offset) {
+    const scrollingClassName = 'ak-scrollsnap-scrolling';
+    const body = document.getElementsByTagName('body')[0];
+    const isScrolling = hasClass(body, scrollingClassName);
+
+    if (isScrolling) return;
+
+    addClass(body, scrollingClassName);
+
+    if (isMobile()) {
+        scrollWindowTo(offset);
+    } else {
+        window.scrollTo({ top: offset, left: 0, behavior: 'smooth' });
+    }
+
+    setTimeout(() => { removeClass(body, scrollingClassName) }, 100);
+}
+
 export function scrollWindowTo (yPosition, duration = 400, onComplete) {
     const currentScrollPosition = window.pageYOffset
     const scrollAmount = yPosition - currentScrollPosition
