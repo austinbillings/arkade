@@ -1,7 +1,6 @@
 import { isDefined, isNonEmptyString } from './type-utils';
 
 export const session = { prefix: '' };
-export const storageAvailable = window && window.sessionStorage;
 
 export function setSessionPrefix (prefix) {
     session.prefix = prefix;
@@ -22,7 +21,7 @@ export function deserializeValue (data) {
 export function sessionSave (key, value = null) {
     if (!isNonEmptyString(key))
         throw new TypeError('sessionSave: (key) is not a non-empty string');
-    if (!storageAvailable)
+    if (!process.browser)
         return null;
 
     return window.sessionStorage.setItem(`${session.prefix}${key}`, serializeValue(value))
@@ -31,7 +30,7 @@ export function sessionSave (key, value = null) {
 export function sessionLoad (key, defaultValue = null) {
     if (!isNonEmptyString(key))
         throw new TypeError('sessionSave: (key) is not a non-empty string');
-    if (!storageAvailable)
+    if (!process.browser)
         return null;
 
     const retrieved = window.sessionStorage.getItem(`${session.prefix}${key}`);
