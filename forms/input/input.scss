@@ -10,10 +10,21 @@
     display: flex;
     flex-direction: row;
 
-    .ak-checkbox-input {
+    .ak-checkbox-icon {
+        flex-shrink: 0;
         width: 1.5em;
         height: 1.5em;
+        padding: 0.25em 0.3em;
+        text-align: center;
+        font-size: 1.1em;
+        cursor: pointer;
+    }
+
+    .ak-checkbox-input {
         flex-shrink: 0;
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
     }
 
     .ak-checkbox-description {

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './input.scss';
+import { Icon } from 'arkade/common'
 import { isFunction } from 'arkade/utils/type-utils';
 
 export const Input = ({ type, value, onChange, placeholder, className, options = [], ...rest }) => {
@@ -37,6 +38,11 @@ export const Input = ({ type, value, onChange, placeholder, className, options =
         case 'checkbox':
             return (
                 <div className={`ak-checkbox-group`}>
+                    <Icon
+                        fa={value ? 'check-square-o' : 'square-o'}
+                        onClick={() => onChange(!value)}
+                        className="ak-checkbox-icon"
+                    />
                     <input
                         checked={!!value}
                         value={!!value}
