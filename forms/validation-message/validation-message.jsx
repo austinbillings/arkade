@@ -38,8 +38,6 @@ export const ValidationMessage = ({ children, kind, className, visible, icon, ..
         }
     }, [children]);
 
-    console.info(children);
-
     return (
         <output className={`ak-validation-message ${messageClass} ${visibilityClass}`}>
             {messageIcon && <Icon fa={messageIcon} className="ak-validation-message-icon" />}
