@@ -23,7 +23,6 @@ export function getFieldErrors (model, field) {
 export function getFieldsetErrors (model, fields) {
     return fields
         .map(f => getFieldErrors(model, f))
-        .flat()
         .filter(errorOrNull => errorOrNull !== null);
 }
 
