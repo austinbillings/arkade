@@ -13,12 +13,14 @@ export const Form = ({
     fields = [],
     actions = [],
     children,
+    style = {},
     className = '',
     disabled = false,
     showPreventativeErrors = false,
     ...rest
 } = {}) => {
     const [ modelState, modelErrors, setModel ] = useModel(fields, initialData);
+    const hasChanged = JSON.stringify(modelState) !== JSON.stringify(initialData);
 
     const handleModelChange = (newModel, errors = []) => {
         setModel(newModel);
@@ -33,7 +35,7 @@ export const Form = ({
     }
 
     return (
-        <form className={`ak-form ${className}`} onSubmit={handleSubmit}>
+        <form className={`ak-form ${className}`} onSubmit={handleSubmit} style={style}>
             <Fieldset
                 model={modelState}
                 fields={fields}
@@ -41,7 +43,7 @@ export const Form = ({
                 className={'ak-form-fieldset'}
                 onModelChange={handleModelChange}
             />
-            {showPreventativeErrors && modelErrors.map((error, index) => (
+            {showPreventativeErrors && hasChanged && modelErrors.map((error, index) => (
                 <ValidationMessage kind="error" key={index} visible={true} children={error.message} />
             ))}
             {children && (
