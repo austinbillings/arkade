@@ -89,12 +89,12 @@ export function sortBy (list, accessor) {
 
     const getSortableValue = (item, index) => (
         isFunction(accessor)
-        ? accessor(item, index)
-        : isNumber(accessor)
-        ? item[accessor]
-        : isString(accessor)
-        ? getDeep(item, accessor)
-        : item
+            ? accessor(item, index)
+            : isNumber(accessor)
+                ? item[accessor]
+                : isString(accessor)
+                    ? getDeep(item, accessor)
+                    : item
     );
 
     return list.sort((a, b) => {
@@ -123,7 +123,9 @@ export function sortObjectArrayValues (obj, sortAccessor) {
     return Object.keys(obj)
         .reduce((output, key) => ({
             ...output,
-            [key]: isArray(obj[key]) ? sortBy(obj[key], sortAccessor) : obj[key]
+            [key]: isArray(obj[key])
+                ? sortBy(obj[key], sortAccessor)
+                : obj[key]
         }), {});
 }
 
@@ -163,15 +165,15 @@ export function getKeys (object) {
 
 export function clone (object) {
     if (isRegex(object))
-    return new RegExp(object);
+        return new RegExp(object);
     if (isArray(object))
-    return object.map(i => clone(i));
+        return object.map(i => clone(i));
     if (isPrimitive(object) || isFunction(object))
-    return object;
+        return object;
     if (isObject(object))
-    return getKeys(object).reduce((output, key) => ({ ...output, [key]: clone(object[key]) }), {});
+        return getKeys(object).reduce((output, key) => ({ ...output, [key]: clone(object[key]) }), {});
     else
-    return object;
+        return object;
 }
 
 export function mergeDeep (...objects) {
@@ -181,8 +183,8 @@ export function mergeDeep (...objects) {
             return;
 
             output[key] = isObject(output[key]) && isObject(item[key])
-            ? mergeDeep(output[key], item[key])
-            : item[key];
+                ? mergeDeep(output[key], item[key])
+                : item[key];
         });
 
         return output;
