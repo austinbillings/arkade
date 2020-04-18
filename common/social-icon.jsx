@@ -9,7 +9,7 @@ export const SocialIcon = ({ networkName, id }) => {
     const linkProps = {
       target: '_blank',
       href: prefix + id,
-      name: `${id} via ${service}`
+      name: `${id} via ${networkName}`
     }
 
     return (
