@@ -8,9 +8,10 @@ export const SocialIcon = ({ networkName, id }) => {
     const prefix = getNetworkUrlPrefix(networkName)
 
     const linkProps = {
-      target: '_blank',
-      href: prefix + id,
-      name: `${id} via ${networkName}`
+        className: 'ak-social-icon',
+        target: '_blank',
+        href: prefix + id,
+        name: `${id} via ${networkName}`
     }
 
     return (
