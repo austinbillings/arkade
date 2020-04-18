@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { getNetworkIcon, getNetworkUrlPrefix } from 'arkade/utils/social-utils';
+import { Icon } from './icon'
+import { getNetworkIcon, getNetworkUrlPrefix } from 'arkade/utils/social-utils'
 
 export const SocialIcon = ({ networkName, id }) => {
     const icon = getNetworkIcon(networkName)
