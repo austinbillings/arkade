@@ -25,8 +25,8 @@ export function getNetworkUrlPrefix (networkName) {
         return;
 
     return Object.keys(NETWORKS).includes(networkName.toLowerCase())
-        ? NETWORKS[networkName.toLowerCase()].prefix
-        : NETWORKS.default.prefix;
+        ? NETWORKS[networkName.toLowerCase()].urlPrefix
+        : NETWORKS.default.urlPrefix;
 };
 
 export function networkMapToList (map) {
