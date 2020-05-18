@@ -2,7 +2,8 @@
   display: inline-flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  min-width: 550px;
+  width: 550px;
+  max-width: 90vw;
   justify-content: flex-start;
   align-items: stretch;
 
