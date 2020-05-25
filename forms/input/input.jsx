@@ -4,7 +4,7 @@ import './input.scss';
 import { Icon } from 'arkade/common'
 import { isFunction } from 'arkade/utils/type-utils';
 
-export const Input = ({ type, value, onChange, placeholder, className, options = [], ...rest }) => {
+export const Input = ({ type = 'text', value = '', onChange, placeholder = '', className = '', options = [], ...rest }) => {
     const handleChange = isFunction(onChange)
         ? (newValue) => onChange(newValue)
         : (newValue) => null;
