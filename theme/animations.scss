@@ -15,3 +15,29 @@
 .revolve-2s { @include revolve(2s); }
 .revolve-2500ms { @include revolve(2500ms); }
 .revolve-3s { @include revolve(3s); }
+.revolve-3500ms { @include revolve(3500ms); }
+.revolve-4s { @include revolve(4s); }
+.revolve-4500ms { @include revolve(4500ms); }
+.revolve-5s { @include revolve(5s); }
+
+@keyframes swell-animation {
+    0% { transform: scale(1);}
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@mixin swell ($duration: 500ms) {
+    transform-origin: center;
+    animation: swell-animation $duration infinite;
+}
+
+.swell-500ms { @include swell(500ms); }
+.swell-1s { @include swell(1s); }
+.swell-1500ms { @include swell(1500ms); }
+.swell-2s { @include swell(2s); }
+.swell-2500ms { @include swell(2500ms); }
+.swell-3s { @include swell(3s); }
+.swell-3500ms { @include swell(3500ms); }
+.swell-4s { @include swell(4s); }
+.swell-4500ms { @include swell(4500ms); }
+.swell-5s { @include swell(5s); }
