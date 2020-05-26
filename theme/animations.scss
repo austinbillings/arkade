@@ -41,3 +41,24 @@
 .swell-4s { @include swell(4s); }
 .swell-4500ms { @include swell(4500ms); }
 .swell-5s { @include swell(5s); }
+
+@keyframes spin-animation {
+    0% { transform: rotateZ(0); }
+    100% { transform: rotate(360deg); }
+}
+
+@mixin spin ($duration: 500ms) {
+    transform-origin: center;
+    animation: spin-animation $duration infinite;
+}
+
+.spin-500ms { @include spin(500ms); }
+.spin-1s { @include spin(1s); }
+.spin-1500ms { @include spin(1500ms); }
+.spin-2s { @include spin(2s); }
+.spin-2500ms { @include spin(2500ms); }
+.spin-3s { @include spin(3s); }
+.spin-3500ms { @include spin(3500ms); }
+.spin-4s { @include spin(4s); }
+.spin-4500ms { @include spin(4500ms); }
+.spin-5s { @include spin(5s); }
