@@ -8,9 +8,16 @@ export function reindent (text) {
 
     const splitByLines = text.split(newlineChar).filter((line, index) => line.length || index);
     const [ firstLine ] = splitByLines.filter(line => line.length);
-    const firstLineIndentation = firstLine.split('').findIndex(c => c !== ' ' && c !== '\t');
+    const firstLineIndentation = firstLine.search(/[^ |\t]/);
 
-    return splitByLines.map(line => line.substring(firstLineIndentation)).join(newlineChar);
+    return splitByLines.map(line => {
+        var nonWhitespaceIndex = line.search(/[^ |\t]/);
+        var precedesCutoff = nonWhitespaceIndex < firstLineIndentation
+        
+        return precedesCutoff
+            ? line.substring(nonWhitespaceIndex)
+            : line.substring(firstLineIndentation);
+    }).join(newlineChar);
 }
 
 export function trim (value) {
