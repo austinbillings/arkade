@@ -20,6 +20,17 @@ export function reindent (text) {
     }).join(newlineChar);
 }
 
+export function indent (text, size, char = ' ') {
+    const indentation = char.repeat(size);
+    
+    return !isNonEmptyString(text)
+        ? text
+        : text
+            .split('\n')
+            .map(line => `${indentation}${line}`)
+            .join('\n');
+}
+
 export function trim (value) {
     return isString(value) ? value.trim() : value;
 }
