@@ -1,9 +1,13 @@
 import { isDefined, isNonEmptyString } from './type-utils';
 
-export const prefixes = { sessionPrefix: '', localPrefix: '' };
+export const prefixes = { sessionPrefix: '', storagePrefix: '' };
 
 export function setSessionPrefix (prefix) {
     prefixes.sessionPrefix = prefix;
+}
+
+export function setStoragePrefix (prefix) {
+    prefixes.storagePrefix = prefix;
 }
 
 export function serializeValue (_value) {
@@ -44,7 +48,7 @@ export function storageSave (key, value = null) {
     if (!process.browser)
         return null;
 
-    return window.localStorage.setItem(`${prefixes.localPrefix}${key}`, serializeValue(value))
+    return window.localStorage.setItem(`${prefixes.storagePrefix}${key}`, serializeValue(value))
 };
 
 export function storageLoad (key, defaultValue = null) {
@@ -53,7 +57,7 @@ export function storageLoad (key, defaultValue = null) {
     if (!process.browser)
         return null;
 
-    const retrieved = window.localStorage.getItem(`${prefixes.localPrefix}${key}`);
+    const retrieved = window.localStorage.getItem(`${prefixes.storagePrefix}${key}`);
 
     return retrieved ? deserializeValue(retrieved) : defaultValue;
 }
