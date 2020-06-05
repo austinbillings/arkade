@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { sessionLoad, sessionSave } from 'arkade/utils/session-utils';
+import { sessionLoad, sessionSave } from 'arkade/utils/storage-utils';
 
 export function useSession (storageKey, defaultValue) {
     const sessionKey = `ak/useSession/${storageKey}`;
