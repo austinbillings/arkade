@@ -1,6 +1,5 @@
-// use-storage.js
 import { useState } from 'react';
-import { storageLoad, storageSave } from 'arkade/utils/local-utils';
+import { storageLoad, storageSave } from 'arkade/utils/storage-utils';
 
 export function useStorage (storageKey, defaultValue) {
     const storageKey = `ak/useStorage/${storageKey}`;
