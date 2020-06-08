@@ -42,7 +42,7 @@ export const Input = ({ type = 'text', value = '', onChange, placeholder = '', c
                     <Icon
                         fa={type === 'toggle' ? (value ? 'toggle-on' : 'toggle-off') : (value ? 'check-square-o' : 'square-o')}
                         onClick={() => onChange(!value)}
-                        className="ak-checkbox-icon"
+                        className={`ak-${type}-icon`}
                     />
                     <input
                         checked={!!value}
