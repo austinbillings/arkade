@@ -36,10 +36,11 @@ export const Input = ({ type = 'text', value = '', onChange, placeholder = '', c
                 />
             )
         case 'checkbox':
+        case 'toggle':
             return (
-                <div className={`ak-checkbox-group`}>
+                <div className={`ak-${type}-group`}>
                     <Icon
-                        fa={value ? 'check-square-o' : 'square-o'}
+                        fa={type === 'toggle' ? (value ? 'toggle-on' : 'toggle-off') : (value ? 'check-square-o' : 'square-o')}
                         onClick={() => onChange(!value)}
                         className="ak-checkbox-icon"
                     />
@@ -47,7 +48,7 @@ export const Input = ({ type = 'text', value = '', onChange, placeholder = '', c
                         checked={!!value}
                         value={!!value}
                         type="checkbox"
-                        className={`ak-checkbox-input ${className}`}
+                        className={`ak-${type}-input ${className}`}
                         onChange={({ target }) => onChange(target.value)}
                         {...rest}
                     />
