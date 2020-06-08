@@ -49,7 +49,7 @@ export const Field = ({ model, fieldConfig = {}, onChange, className }) => {
     const handleBlur = evt => !fieldState.hasBlurred ? setFieldState({ ...fieldState, hasBlurred: true }) : null;
 
     return (
-        <div className="ak-field" {...otherFieldProps}>
+        <div className={`ak-field ak-field--${type}`} {...otherFieldProps}>
             <label className="ak-field-label">
                 {label && (!props || !props.placeholder) && (
                     <span className="ak-field-label-text">

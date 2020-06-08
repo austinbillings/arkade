@@ -1,5 +1,5 @@
 // tab-panel.scss
-$tab-border-color: rgba(125, 125, 125, 0.3);
+$tab-border-color: rgba(125, 125, 125, 0.5);
 
 .ak-tabs {
     .ak-tabs-header {
@@ -29,7 +29,7 @@ $tab-border-color: rgba(125, 125, 125, 0.3);
                 border-right: 1px solid $tab-border-color;
             }
             
-            &.tab--active {
+            &.ak-tab--active {
                 border-bottom: 1px solid transparent;
             }
         }
