@@ -1,10 +1,18 @@
 import React from 'react';
 
-export const CentralLayout = ({ children, className = '', style = {}, ...rest }) => (
-    <div
-        className={`${className} stack items-center justify-center`}
-        style={{ minHeight: '100vh', ...style }}
-        {...rest}>
-        {children}
-    </div>
-);
+export const CentralLayout = ({ className = '', style = {}, ...rest } = {}) => {
+    const centralStyles = {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    };
+    
+    return (
+        <div
+            style={{ ...centralStyles, ...style }}
+            className={`ak-layout ak-layout-central ${className}`}
+            {...rest}
+        />
+    );
+};
