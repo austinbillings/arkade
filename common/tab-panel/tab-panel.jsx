@@ -30,7 +30,7 @@ export const TabPanel = ({ tabs = {}, name = '', className, style, ...rest } = {
             <StackLayout className="ak-tabs-content">
                 {Object.entries(tabs)
                     .filter(([ tabId, tab ]) => tabId === activeTabId)
-                    .map(([ tabId, tab ]) => <tab.content key={tabId} /></div>)}
+                    .map(([ tabId, tab ]) => <tab.content key={tabId} />)}
             </StackLayout>
         </StackLayout>
     );
