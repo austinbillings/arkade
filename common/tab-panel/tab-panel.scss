@@ -1,0 +1,44 @@
+// tab-panel.scss
+$tab-border-color: rgba(125, 125, 125, 0.3);
+
+.ak-tabs {
+    .ak-tabs-header {
+        .ak-tab-spacer {
+            display: block;
+            border-left: 1px solid $tab-border-color;
+            flex: 1;
+            color: transparent;
+            font-size: 0;
+            border-bottom: 1px solid $tab-border-color;
+        }
+        
+        .ak-tab-button {
+            display: block;
+            padding: 12px;
+            font-size: 13px;
+            cursor: pointer;
+            border: 1px solid $tab-border-color;
+            border-right: none;
+            
+            .ak-icon {
+                margin-right: 12px;
+                opacity: 0.3;
+            }
+            
+            &:last-child {
+                border-right: 1px solid $tab-border-color;
+            }
+            
+            &.tab--active {
+                border-bottom: 1px solid transparent;
+            }
+        }
+    }
+
+    .ak-tabs-content {
+        flex: 1;
+        align-items: stretch;
+        border: 1px solid $tab-border-color;
+        border-top: none;
+    }
+}
