@@ -5,12 +5,12 @@
     border: none;
 }
 
-.ak-checkbox-group {
+.ak-checkbox-group, .ak-toggle-group {
     padding: 0.5em;
     display: flex;
     flex-direction: row;
 
-    .ak-checkbox-icon {
+    .ak-checkbox-icon, .ak-toggle-icon {
         flex-shrink: 0;
         width: 1.5em;
         height: 1.5em;
@@ -20,14 +20,14 @@
         cursor: pointer;
     }
 
-    .ak-checkbox-input {
+    .ak-checkbox-input, .ak-toggle-input {
         flex-shrink: 0;
         opacity: 0;
         visibility: hidden;
         position: absolute;
     }
 
-    .ak-checkbox-description {
+    .ak-checkbox-description, .ak-toggle-description {
         padding: 0 0.5em;
         cursor: pointer;
         align-self: stretch;
