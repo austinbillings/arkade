@@ -51,7 +51,7 @@ export const Field = ({ model, fieldConfig = {}, onChange, className }) => {
     return (
         <div className={`ak-field ak-field--${type}`} {...otherFieldProps}>
             <label className="ak-field-label">
-                {label && (!props || !props.placeholder) && (
+                {label && (
                     <span className="ak-field-label-text">
                         {label}
                         {' '}
