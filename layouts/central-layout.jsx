@@ -11,7 +11,7 @@ export const CentralLayout = ({ className = '', style = {}, ...rest } = {}) => {
     return (
         <div
             style={{ ...centralStyles, ...style }}
-            className={`ak-layout ak-layout-central ${className}`}
+            className={`ak-central ${className}`}
             {...rest}
         />
     );

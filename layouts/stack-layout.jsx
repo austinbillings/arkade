@@ -11,7 +11,7 @@ export const StackLayout = ({ className = '', style = {}, ...rest } = {}) => {
     return (
         <div
             style={{ ...stackStyles, ...style }}
-            className={`ak-layout ak-layout-stack ${className}`}
+            className={`ak-stack ${className}`}
             {...rest}
         />
     );

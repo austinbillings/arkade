@@ -12,7 +12,7 @@ export const RowLayout = ({ className = '', style = {}, ...rest } = {}) => {
     return (
         <div
             style={{ ...rowStyles, ...style }}
-            className={`ak-layout ak-layout-row ${className}`}
+            className={`ak-row ${className}`}
             {...rest}
         />
     );
