@@ -1,22 +1,78 @@
 # Arkade
 
+Arkade (`ak`) is the *tacklebox* to React's *fishing pole.*
 
-## Installation / setup
-Arkade assumes you're writing ES6 code in the ES6-module style. No transpilation or compilation of the source code is necessary, besides whatever methods you're already using to build your app.
+React isn't _"batteries included"_, so Arkade is a pack of shiny new _batteries_.
 
-Arkade requires a sibling dependency `react` of at least version 16.0.
+Arkade is a collection of smallish useful components, each designed to not get-in-the-way of how you compose your apps.
 
-```sh
-> npm install arkade
+
+### Arkade includes...
+- **`arkade/common`** Reliable common components like `<Icon>`, `<ProgressBar>`, and `<TabPanel>`.
+- **`arkade/errors`** 3 custom error types for better DX
+- **`arkade/forms`** A suite of form components to make input a breeze
+- **`arkade/hooks`** 3 hooks: `useModel`, `useSession`, and `useStorage`.
+- **`arkade/layouts`** 3 flex-based layouts: `<RowLayout>`, `<StackLayout>`, and `<CentralLayout>`
+- **`arkade/media`** 2 media-related components, `<Audio>` (audio player with controls) and `<CoverVideo>` (dynamically sizes a video for use as a background)
+- **`arkade/tools`** 7 components for better DX and/or which have deeper functionality (such as `<ScrollWatcher>` and `<ErrorBoundary>`).
+- **`arkade/utils`** small, useful utility functions across 9 categories (browser-, download-, form-, object-, react-, social-, storage-, text-, _and_ type-utils)
+- ..._and_ an optional sass-based **UI theme generated based on a color scheme you provide**, including utility classes, stylized HTML defaults, animations, and automatic flavor classes for buttons, text, borders, and backgrounds.
+
+## Installation & setup
+```
+npm install arkade
 ```
 
-In your project:
+Arkade is offered in non-transpiled, native ES6 module format, containing JSX and SCSS markup.
+
+Being a React toolkit, Arkade requires a sibling dependency `react` of at least version 16.0.
+
+To use the icons, you'll need to make sure FontAwesome CSS is included in your app bundle (or better yet, loaded on the page via a CDN).
+
+Arkade also includes SASS, which should be transpiled to CSS at some point by your application (usually during your build step).
+
+## Crash course
+Here are some example of how Arkade can get things done. Try them out!
+
+### Simple show/hide modal toggle (persists to session!)
+
+```js
+import React from 'react'
+
+import { useSession } from 'arkade/hooks'
+import { ModalWrapper, ModalBody } from 'arkade/tools'
+
+export const MyModalTrigger = () => {
+	const [isModalShown, setIsModalShown] = useSession('myModalVisibility', false);
+	
+	const showModal = () => setIsModalShown(true)
+	const hideModal = () => setIsModalShown(false)
+
+	return (
+		<section>
+			<button className="btn btn-primary" onClick={showModal}>
+				Open modal
+			</button>
+		
+			<ModalWrapper visible={isModalShown}>
+				<ModalBody onClose={hideModal}>
+					Modal Content Baby
+				</ModalBody>
+			</ModalWrapper>
+		</section>
+	)
+}
+
+```
+
+### A sleek background video header
 
 ```js
 import React from 'react';
 
 import { Icon } from 'arkade/common';
 import { CoverVideo } from 'arkade/media';
+import { CentralLayout } from 'arkade/layouts';
 
 export const MyComponent = ({ someProp }) => {
     const videoSources = [
@@ -35,8 +91,71 @@ export const MyComponent = ({ someProp }) => {
 }
 ```
 
+### A simple form with validation
+
+```js
+import React, { useState } from 'react';
+
+import { Fieldset } from 'arkade/forms';
+import { AppError, ValidationError } from 'arkade/errors';
+import { isNonEmptyString } from 'arkade/utils/type-utils';
+
+const isValidMessage = (givenMessage, formModel) => {
+	if (!isNonEmptyString(givenMessage) || givenMessage.length < 10)
+		throw new ValidationError('Message must a string at least 10 characters long.', givenMessage);
+	if (givenMessage.toLowerCase().contains('dallas cowboys'))
+		throw new ValidationError('This is an eagles town.', givenMessage);
+	if (formModel.email.toLowerCase() === 'peeves@hogwarts.edu')
+		throw new ValidationError(`We don't wanna hear it, Peeves.`, givenMessage);
+		
+	return true;
+}
+
+const isValidEmail = (email) => {
+	const EMAIL_PATTERN = /^[^\s@]*@[^\s_@]+[\s]*\.[a-zA-Z]{2,}$/;
+	
+	if (!isNonEmptyString(givenMessage) || !EMAIL_PATTERN.test(email))
+		throw new ValidationError('Please enter a valid email.', email);
+		
+	return true;
+}
+
+export const MyComponent = ({ someProp }) => {
+	const [model, setModel] = useState({ message: null, email: null });
+	
+	const fields = [
+		{
+			modelKey: 'message',
+			label: 'Your Message',
+			icon: 'pencil',
+			type: 'text',
+			validate: isValidMessage
+		},
+		{
+			modelKey: 'email',
+			label: 'Your Email',
+			type: 'email',
+			icon: 'envelope',
+			validate: isValidEmail
+		}
+	];
+	
+	
+	return (
+		<CentralLayout>
+			<Fieldset
+				fields={fields}
+				model={model}
+				onModelChange={setModel}
+			/>
+		</CentralLayout>
+	);
+}
+
+
+```
+
 # What's In The Box
-(Documentation coming soon, I hope)
 
 ## Components
 
@@ -64,25 +183,21 @@ export const MyComponent = ({ someProp }) => {
 ---
 
 ## Errors
-Custom error types
+Custom error types for better DX
 
-- `AppError`
-> A generic error type, which accepts an error message AND arbitrary contextual data you can extract and use later in your execution. Effectively allows you to tie-in any necessary metadata when you throw an error.
+### `new AppError(message, contextData, ...rest)`
+- Attaches `.contextData` to resulting error
 
- ```
- function myAsyncFunc() {
-   if (!someService.started) throw new AppError('Some service failed to start', { serviceId, requestContext })
-   ...
-}
-/*
-... later on ...
-*/
-myAsyncFunc()
-    .then(handleResponse)
-    .catch(err => log('Service failed to start, heres the request context:', err.contextData.requestContext));
-```
 
----
+### `new NetworkError(statusCode, message, ...rest)`
+- Attaches `.statusCode` to resulting error
+- Adds `.contextData` string combining message and statusCode
+
+### `new ValidationError(message, invalidGivenValue, ...rest)`
+- Attaches `.invalidGivenValue` to resulting error
+- Adds `.contextData` string combining message with value
+
+
 
 ## Utils
 A few sets of utilities
