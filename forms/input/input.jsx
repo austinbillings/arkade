@@ -17,8 +17,8 @@ export const Input = ({ type = 'text', value = '', onChange, placeholder = '', c
                     value={value || ''}
                     className={`ak-select ${className}`}
                     onChange={({ target }) => onChange(target.value)}>
-                    {options.map(({ name, value }, index) => (
-                        <option key={index} value={value}>{name}</option>
+                    {options.map(({ name, value, disabled }, index) => (
+                        <option key={index} value={value} disabled={disabled}>{name}</option>
                     ))}
                 </select>
             );
