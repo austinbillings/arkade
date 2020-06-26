@@ -1,0 +1,34 @@
+// radiuses.scss
+@mixin radius-top-left($amount) { border-top-left-radius: $amount; }
+@mixin radius-bottom-left($amount) { border-bottom-left-radius: $amount; }
+@mixin radius-top-right($amount) { border-top-right-radius: $amount; }
+@mixin radius-bottom-right($amount) { border-bottom-right-radius: $amount; }
+
+@mixin radius-all($amount) { border-radius: $amount $amount $amount $amount; }
+@mixin radius-top($amount) { border-top-left-radius: $amount; border-top-right-radius: $amount; }
+@mixin radius-bottom($amount) { border-bottom-left-radius: $amount; border-bottom-right-radius: $amount; }
+@mixin radius-right($amount) { border-bottom-right-radius: $amount; border-top-right-radius: $amount; }
+@mixin radius-left($amount) { border-bottom-left-radius: $amount; border-top-left-radius: $amount; }
+
+// sass-lint:disable brace-style
+.radius-0 { @include radius-all(0px); }
+.radius-1 { @include radius-all(1px); }
+.radius-2 { @include radius-all(2px); }
+.radius-3 { @include radius-all(3px); }
+.radius-4 { @include radius-all(4px); }
+.radius-5 { @include radius-all(5px); }
+.radius-6 { @include radius-all(6px); }
+.radius-7 { @include radius-all(7px); }
+.radius-8 { @include radius-all(8px); }
+.radius-9 { @include radius-all(9px); }
+.radius-10 { @include radius-all(10px); }
+.radius-11 { @include radius-all(11px); }
+.radius-12 { @include radius-all(12px); }
+.radius-13 { @include radius-all(13px); }
+.radius-14 { @include radius-all(14px); }
+.radius-15 { @include radius-all(15px); }
+.radius-16 { @include radius-all(16px); }
+.radius-17 { @include radius-all(17px); }
+.radius-18 { @include radius-all(18px); }
+.radius-19 { @include radius-all(19px); }
+.radius-20 { @include radius-all(20px); }

@@ -5,6 +5,7 @@
 @import './typography';
 @import './margins';
 @import './padding';
+@import './radius';
 @import './animations';
 @import './mixins';
 
@@ -20,8 +21,8 @@ body {
 }
 
 a {
-    color: currentColor;
-    &, &:link, &:active, &:hover { cursor: pointer; }
+  color: currentColor;
+  &, &:link, &:active, &:hover { cursor: pointer; }
 }
 
 hr {
