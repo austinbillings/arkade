@@ -29,6 +29,8 @@ export const CoverVideo = ({ children, aspectRatio, sources = [], style = {} }) 
         if (!isBrowser)
             return;
         
+        handleResizeEvent({ target: window });
+        
         window.addEventListener('resize', handleResizeEvent);
 
         return () => window.removeEventListener('resize', handleResizeEvent);
