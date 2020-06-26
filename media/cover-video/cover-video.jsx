@@ -15,7 +15,6 @@ export const CoverVideo = ({ children, aspectRatio, sources = [], style = {} }) 
     const differential = (viewportAspectRatio / aspectRatio);
 
     const height = orientation === 'tall' ? '100vh' : (differential * 100) + 'vh';
-
     const marginTop = orientation === 'tall' ? 0 : ((1 - differential) * 50) + 'vh';
 
     function handleResizeEvent (evt) {
@@ -34,7 +33,7 @@ export const CoverVideo = ({ children, aspectRatio, sources = [], style = {} }) 
         window.addEventListener('resize', handleResizeEvent);
 
         return () => window.removeEventListener('resize', handleResizeEvent);
-    });
+    }, [process.browser, window.innerWidth, window.innerHeight]);
 
     return (
         <div className="cover-video-wrapper" style={style}>
