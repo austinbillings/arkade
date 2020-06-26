@@ -4,7 +4,11 @@ import React, { useState, useEffect } from 'react';
 import './cover-video.scss';
 
 export const CoverVideo = ({ children, aspectRatio, sources = [], style = {} }) => {
-    const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
+    const isBrowser = !!process.browser;
+    const [dimensions, setDimensions] = useState({
+        width: isBrowser ? window.innerWidth : null,
+        height: isBrowser ? window.innerHeight : null
+    });
 
     const viewportAspectRatio = dimensions.width / dimensions.height;
     const orientation = viewportAspectRatio > aspectRatio ? 'wide' : 'tall';
@@ -22,6 +26,9 @@ export const CoverVideo = ({ children, aspectRatio, sources = [], style = {} }) 
     }
 
     useEffect(() => {
+        if (!isBrowser)
+            return;
+        
         window.addEventListener('resize', handleResizeEvent);
 
         return () => window.removeEventListener('resize', handleResizeEvent);
