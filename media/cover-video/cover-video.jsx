@@ -33,7 +33,7 @@ export const CoverVideo = ({ children, aspectRatio, sources = [], style = {} }) 
         window.addEventListener('resize', handleResizeEvent);
 
         return () => window.removeEventListener('resize', handleResizeEvent);
-    }, [process.browser, window.innerWidth, window.innerHeight]);
+    }, [process.browser, process.browser ? window.innerWidth : null, process.browser ? window.innerHeight : null]);
 
     return (
         <div className="cover-video-wrapper" style={style}>
