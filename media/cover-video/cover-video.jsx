@@ -6,7 +6,7 @@ import './cover-video.scss';
 export const CoverVideo = ({ children, aspectRatio, sources = [], style = {} }) => {
     const isBrowser = !!process.browser;
     const [dimensions, setDimensions] = useState({
-        width: isBrowser ? window.innerWidth : null,
+        width: isBrowser ? window.innerWidth : '100vw',
         height: isBrowser ? window.innerHeight : null
     });
 
