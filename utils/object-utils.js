@@ -199,6 +199,33 @@ export function equals (a, b) {
     return JSON.stringify(a) === JSON.stringify(b);
 }
 
+export function firstOf (array) {
+    return isNonEmptyArray(array)
+        ? array[0]
+        : null
+}
+
+export function lastOf (array) {
+    return isNonEmptyArray(array)
+        ? array[array.length - 1]
+        : null
+}
+
+export function shuffle (array) {
+    if (!isNonEmptyArray(array))
+        return array;
+
+    var output = []
+    var supply = [...array]
+
+    while (output.length < array.length) {
+        output.push(...supply.splice(Math.random() * (array.length - 1), 1));
+        supply = supply.filter(x => x)
+    }
+
+    return output;
+}
+
 export function unique (array) {
     if (!isArray(array)) throw new TypeError(`unique: ${array} is not an array.`);
 
