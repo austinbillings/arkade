@@ -61,6 +61,8 @@
             } @else {
               background-color: $accent;
             }
+
+            text-shadow: 0 2px 4px rgba(127, 127, 127, 0.6);
             transform: scale(0.98);
         }
 
