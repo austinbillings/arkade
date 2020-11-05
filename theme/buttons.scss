@@ -36,7 +36,7 @@
   }
 }
 
-@mixin buttonClass ($buttonName, $accent, $text-color: $white, $use-border: false) {
+@mixin buttonClass ($buttonName, $accent, $text-color: $white, $use-border: false, $use-variations: true) {
     .btn.btn-#{$buttonName} {
         color: $text-color;
         border: 1px solid $accent;
@@ -46,27 +46,47 @@
         transition: background 0.4s, transform 0.6s, border 0.5s, color 0.3s;
 
         &:hover {
-            border-color: darken($accent, 1%);
-            background-color: lighten(desaturate($accent, 5), 5%);
+            @if $use-variations {
+              border-color: darken($accent, 1%);
+              background-color: lighten(desaturate($accent, 5), 5%);
+            } @else {
+              border-color: $accent;
+              background-color: $accent;
+            }
         }
 
         &:active {
-            background-color: darken(desaturate($accent, 20), 5%);
+            @if $use-variations {
+              background-color: darken(desaturate($accent, 20), 5%);
+            } @else {
+              background-color: $accent;
+            }
             transform: scale(0.98);
         }
 
         &[disabled] {
             opacity: 0.7;
             cursor: not-allowed;
-            background-color: fade-out(saturate($accent, 30), 0.3);
-            border-color: fade-out(desaturate($accent, 30), 0.4);
+
+            @if $use-variations {
+              background-color: fade-out(saturate($accent, 30), 0.3);
+              border-color: fade-out(desaturate($accent, 30), 0.4);
+            } @else {
+              background-color: $accent;
+              border-color: $accent;
+            }
         }
 
         @if $use-border {
             border-color: $text-color;
 
-            &:hover { border-color: darken($text-color, 1%); }
-            &:active { background-color: darken(desaturate($text-color, 20), 5%); }
+            @if $use-variations {
+              &:hover { border-color: darken($text-color, 1%); }
+              &:active { background-color: darken(desaturate($text-color, 20), 5%); }
+            } @else {
+              &:hover { border-color: $text-color; }
+              &:active { background-color: $text-color; }
+            }
         }
     }
 }
