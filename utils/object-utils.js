@@ -215,16 +215,17 @@ export function shuffle (array) {
     if (!isNonEmptyArray(array))
         return array;
 
-    var output = []
-    var supply = [...array]
+    const output = []
+    let supply = [...array]
 
     while (output.length < array.length) {
-        output.push(...supply.splice(Math.random() * (array.length - 1), 1));
-        supply = supply.filter(x => x)
+        output.push(...supply.splice(Math.floor(Math.random() * (array.length)), 1));
+        supply = supply.filter(isDefined)
     }
 
     return output;
 }
+
 
 export function unique (array) {
     if (!isArray(array)) throw new TypeError(`unique: ${array} is not an array.`);
