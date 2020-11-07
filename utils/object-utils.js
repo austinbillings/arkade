@@ -215,7 +215,7 @@ export function shuffle (array) {
     if (!isNonEmptyArray(array))
         return array;
 
-    const output = []
+    let output = []
     let supply = [...array]
 
     while (output.length < array.length) {
