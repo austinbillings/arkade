@@ -10,16 +10,16 @@ export const ModalBody = ({ title = null, closeable = true, escapable = true, ch
 
     return (
       <div className={fullClassName}>
-        {showTopArea && (
+        {!showTopArea ? null : (
           <div className="modal-top">
             {title && <h4 className="header-small">{title}</h4>}
             <span> </span>
-            {closeable && (
+            {!closeable ? null : (
                 <Icon fa="close" onClick={onClose} />
             )}
           </div>
         )}
-        {children && (
+        {!children ? null : (
           <div className="modal-content">
               {children}
           </div>
