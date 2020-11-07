@@ -219,8 +219,8 @@ export function shuffle (array) {
     let supply = [...array]
 
     while (output.length < array.length) {
-        output.push(...supply.splice(Math.floor(Math.random() * (array.length)), 1));
-        supply = supply.filter(isDefined)
+        output = output.concat(...supply.splice(Math.floor(Math.random() * (array.length)), 1));
+        supply = [...supply.filter(isDefined)]
     }
 
     return output;
