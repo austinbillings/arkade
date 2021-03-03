@@ -7,12 +7,13 @@
 @import './padding';
 @import './radius';
 @import './animations';
+@import './effects';
 @import './mixins';
 
 html {
-  @media (min-width: 992px) { font-size: 14px; }
-  @media (max-width: 992px) { font-size: 13px; }
-  @media (max-width: 768px) { font-size: 12px; }
+  @media (min-width: 992px) { font-size: 15px; }
+  @media (max-width: 992px) { font-size: 14px; }
+  @media (max-width: 768px) { font-size: 13px; }
 }
 
 body {
