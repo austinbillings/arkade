@@ -13,7 +13,7 @@ export function reindent (text) {
     return splitByLines.map(line => {
         var nonWhitespaceIndex = line.search(/[^ |\t]/);
         var precedesCutoff = nonWhitespaceIndex < firstLineIndentation
-        
+
         return precedesCutoff
             ? line.substring(nonWhitespaceIndex)
             : line.substring(firstLineIndentation);
@@ -22,7 +22,7 @@ export function reindent (text) {
 
 export function indent (text, size, char = ' ') {
     const indentation = char.repeat(size);
-    
+
     return !isNonEmptyString(text)
         ? text
         : text
