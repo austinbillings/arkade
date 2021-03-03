@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import './cover-video.scss';
 
-export const CoverVideo = ({ children, aspectRatio, sources = [], style = {} }) => {
+export const CoverVideo = ({ children, yOffset, aspectRatio, sources = [], style = {} }) => {
     const isBrowser = !!process.browser;
     const [dimensions, setDimensions] = useState({
         width: isBrowser ? window.innerWidth : '100vw',
@@ -27,9 +27,9 @@ export const CoverVideo = ({ children, aspectRatio, sources = [], style = {} }) 
     useEffect(() => {
         if (!isBrowser)
             return;
-        
+
         handleResizeEvent({ target: window });
-        
+
         window.addEventListener('resize', handleResizeEvent);
 
         return () => window.removeEventListener('resize', handleResizeEvent);
