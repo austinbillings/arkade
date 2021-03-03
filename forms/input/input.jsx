@@ -31,7 +31,7 @@ export const Input = ({ type = 'text', value = '', onChange, placeholder = '', c
                     className={`ak-input ${className}`}
                     placeholder={placeholder || ''}
                     onChange={({ target }) => onChange(target.value)}
-                    value={value}
+                    value={value || ''}
                     {...rest}
                 />
             )
