@@ -6,8 +6,8 @@ export const Portal = ({ children }) => {
     if (!process.browser) {
         return React.Fragment;
     }
-    
-    const rootTarget = document.getElementById('modal-root');
+
+    const rootTarget = document.getElementById('ak-modal-root');
 
     return createPortal(children, rootTarget);
 };

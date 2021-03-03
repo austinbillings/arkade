@@ -1,3 +1,3 @@
 import React from 'react';
 
-export const ModalRoot = () => (<div id="modal-root"></div>);
+export const ModalRoot = () => (<div id="ak-modal-root"></div>);
