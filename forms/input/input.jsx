@@ -63,7 +63,7 @@ export const Input = ({ type = 'text', value = '', onChange, placeholder = '', c
         default:
             return (
                 <input
-                    value={value}
+                    value={value || ''}
                     type={type || 'text'}
                     placeholder={placeholder || ''}
                     className={`ak-input ${className}`}
