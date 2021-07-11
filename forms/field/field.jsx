@@ -24,6 +24,7 @@ export const Field = ({ model, fieldConfig = {}, onChange, className }) => {
         optional = false,
         validate,
         applyChange,
+        placeholder,
         ...otherFieldProps
     } = fieldConfig;
 
@@ -67,6 +68,7 @@ export const Field = ({ model, fieldConfig = {}, onChange, className }) => {
                     type={type}
                     value={value}
                     onChange={handleChange}
+                    placeholder={placeholder || null}
                     onBlur={handleBlur}
                     onFocus={handleFocus}
                     className={`ak-field-input ${inputClassName}`}
