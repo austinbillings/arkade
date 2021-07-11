@@ -15,8 +15,10 @@ export function styleDate (date, format = 'compact', locale = undefined) {
     // weekdays: include day-of-week (e.g., Wed Mar 21 2020)
     years: option('years') || option('year'),
     // years: include year (e.g., May 23 2020) instead of not (e.g., May 23)
-    commas: option('commas')
+    commas: option('commas'),
     // includes commas (e.g., Saturday, June 20, 2020)
+    ordinals: option('ordinals')
+    // includes ordinals (e.g., "th" in 4th and "nd" in 22nd)
   };
 
   const weekdayOptions = options.weekdays ? { weekday: options.full ? 'long' : 'short' } : {};

@@ -1,13 +1,11 @@
 import React, { useMemo, useState, useCallback } from 'react';
 
-import './field.scss';
-
 import { Icon } from 'arkade/common';
 import { getFieldErrors } from 'arkade/utils/form-utils';
 import { isObject, isFunction, isDefined } from 'arkade/utils/type-utils';
 
-import { Input } from '../input/input';
-import { ValidationMessage } from '../validation-message/validation-message';
+import { Input } from './input';
+import { ValidationMessage } from './validation-message';
 
 const defaultApplyChange = (modelKey) => (value, model = {}) => (
     { ...model, [modelKey]: value }
@@ -24,7 +22,10 @@ export const Field = ({ model, fieldConfig = {}, onChange, className }) => {
         optional = false,
         validate,
         applyChange,
+
         placeholder,
+        tabIndex,
+        autoFocus,
         ...otherFieldProps
     } = fieldConfig;
 
@@ -68,6 +69,9 @@ export const Field = ({ model, fieldConfig = {}, onChange, className }) => {
                     type={type}
                     value={value}
                     onChange={handleChange}
+                    placeholder={placeholder || null}
+                    tabIndex={tabIndex || undefined}
+                    autoFocus={autoFocus || undefined}
                     placeholder={placeholder || null}
                     onBlur={handleBlur}
                     onFocus={handleFocus}

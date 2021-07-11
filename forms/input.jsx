@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './input.scss';
 import { Icon } from 'arkade/common'
 import { isFunction } from 'arkade/utils/type-utils';
 

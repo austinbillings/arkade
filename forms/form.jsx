@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { isFunction, isNonEmptyArray } from 'arkade/utils/type-utils';
 
-import './form.scss';
-import { FormAction } from '../form-action/form-action';
-import { Fieldset } from '../fieldset/fieldset';
-import { ValidationMessage } from '../validation-message/validation-message';
+import { FormAction } from './form-action';
+import { Fieldset } from './fieldset';
+import { ValidationMessage } from './validation-message';
 import { useModel } from 'arkade/hooks';
 
 export const Form = ({

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { isString } from 'arkade/utils/type-utils';
 import { Icon } from 'arkade/common';
 
-import './validation-message.scss';
-
 function getIconForKind (kind) {
     switch (kind) {
         case 'error':

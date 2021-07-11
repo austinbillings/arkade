@@ -1,10 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { isArray, isFunction, isNonEmptyArray } from 'arkade/utils/type-utils';
 
-import './fieldset.scss';
-
 import { Icon } from 'arkade/common';
-import { Field } from '../field/field';
+import { Field } from './field';
 import { getFieldsetErrors } from 'arkade/utils/form-utils';
 
 export const Fieldset = ({ model, fields, onModelChange, disabled = false, className = '', ...rest }) => {
