@@ -82,29 +82,6 @@ export function anonymizeObject(data, fields, preserveFields) {
     return replacement;
 }
 
-export function sortBy (list, accessor) {
-    if (!isArray(list)) {
-        return new TypeError(`sortBy: list is not an array. (Got ${typeof list})`);
-    }
-
-    const getSortableValue = (item, index) => (
-        isFunction(accessor)
-            ? accessor(item, index)
-            : isNumber(accessor)
-                ? item[accessor]
-                : isString(accessor)
-                    ? getDeep(item, accessor)
-                    : item
-    );
-
-    return list.sort((a, b) => {
-        const aVal = getSortableValue(a);
-        const bVal = getSortableValue(b);
-
-        return aVal === bVal ? 0 : aVal < bVal ? -1 : 1;
-    });
-}
-
 export function sortObjectKeys (obj) {
     if (!isObject(obj)) {
         throw new TypeError(`sortObjectKeys: expected obj to be an object (Got ${typeof obj})`);
@@ -113,20 +90,6 @@ export function sortObjectKeys (obj) {
     return Object.keys(obj)
         .sort()
         .reduce((output, key) => ({ ...output, [key]: obj[key] }), {});
-}
-
-export function sortObjectArrayValues (obj, sortAccessor) {
-    if (!isObject(obj)) {
-        throw new TypeError(`sortObjectArrayValues: expected obj to be an object (Got ${typeof obj})`);
-    }
-
-    return Object.keys(obj)
-        .reduce((output, key) => ({
-            ...output,
-            [key]: isArray(obj[key])
-                ? sortBy(obj[key], sortAccessor)
-                : obj[key]
-        }), {});
 }
 
 export function memoize (func, resolver = null) {
@@ -197,42 +160,4 @@ export function equals (a, b) {
     if (isRegex(a)) return isRegex(b) ? a.toString() === b.toString() : false;
 
     return JSON.stringify(a) === JSON.stringify(b);
-}
-
-export function firstOf (array) {
-    return isNonEmptyArray(array)
-        ? array[0]
-        : null
-}
-
-export function lastOf (array) {
-    return isNonEmptyArray(array)
-        ? array[array.length - 1]
-        : null
-}
-
-export function shuffle (array) {
-    if (!isNonEmptyArray(array))
-        return array;
-
-    let output = []
-    let supply = [...array]
-
-    while (output.length < array.length) {
-        output = output.concat(...supply.splice(Math.floor(Math.random() * (array.length)), 1));
-        supply = [...supply.filter(isDefined)]
-    }
-
-    return output;
-}
-
-
-export function unique (array) {
-    if (!isArray(array)) throw new TypeError(`unique: ${array} is not an array.`);
-
-    return array.reduce((output, item) => {
-        const target = output.find(i => equals(i, item));
-
-        return target ? output : [ ...output, item ]
-    }, []);
 }
