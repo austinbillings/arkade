@@ -9,6 +9,12 @@ import {
 
 import { equals, getDeep } from './object-utils';
 
+export function reverse (list) {
+    return !isArray(list)
+        ? list
+        : list.reduce((out, item) => [item, ...out], []);
+}
+
 export function sortBy (list, accessor) {
     if (!isArray(list)) {
         return new TypeError(`sortBy: list is not an array. (Got ${typeof list})`);
