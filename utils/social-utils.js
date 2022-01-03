@@ -7,6 +7,7 @@ const NETWORKS = {
     soundcloud: { icon: 'soundcloud', urlPrefix: 'https://www.soundcloud.com/' },
     facebook: { icon: 'facebook', urlPrefix: 'https://www.facebook.com/' },
     youtube: { icon: 'youtube-play', urlPrefix: 'https://www.youtube.com/channel/' },
+    spotify: { icon: 'spotify', urlPrefix: 'https://open.spotify.com/artist/' },
     email: { icon: 'envelope-square', urlPrefix: 'mailto:' },
     default: { icon: 'globe', urlPrefix: '' }
 };
@@ -17,7 +18,7 @@ export function getNetworkIcon (networkName) {
 
     return Object.keys(NETWORKS).includes(networkName.toLowerCase())
         ? NETWORKS[networkName.toLowerCase()].icon
-        : NETWORKS.default.icon;
+        : networkName;
 };
 
 export function getNetworkUrlPrefix (networkName) {
