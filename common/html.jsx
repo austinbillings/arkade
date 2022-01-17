@@ -1,3 +1,3 @@
 export const Html = ({ code, ...style }) => (
-    <span {...style} dangerouslySetInnerHtml={{ __html: code || '' }} />
+    <span {...style} dangerouslySetInnerHTML={{ __html: code || '' }} />
 )
