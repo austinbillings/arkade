@@ -1,34 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 export const FlipLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '', className = '', style = {}, ...rest } = {}) => {
-    const [windowWidth, setWindowWidth] = useState(process.browser ? window.innerWidth : 0)
-
-    useEffect(() => {
-        const handler = () => {
-            console.log('handler running')
-            if (window.innerWidth !== windowWidth) setWindowWidth(window.innerWidth)
-        }
-
-        console.log('useEffect running')
-
-        setTimeout(handler);
-
-        if (process.browser) {
-            window.addEventListener('resize', handler)
-        }
-
-        return () => {
-            window.removeEventListener('resize', handler)
-        }
-    });
-
-    const useStack = process.browser ? windowWidth <= breakPoint : false;
-
+    const useStack = window.matchMedia(`only screen and (max-width: ${breakPoint}px)`).matches;
     const styles = {
         display: 'flex',
-        flexDirection: useStack ? 'column' : 'row',
+        alignItems: 'stretch',
         justifyContent: 'flex-start',
-        alignItems: 'stretch'
+        flexDirection: useStack ? 'column' : 'row',
     };
 
 
