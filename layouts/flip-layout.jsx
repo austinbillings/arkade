@@ -10,7 +10,8 @@ export const FlipLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '
 
     useEffect(() => {
         console.log('useEffect running')
-        handler();
+
+        setTimeout(handler);
 
         if (process.browser) {
             window.addEventListener('resize', handler)
@@ -29,6 +30,7 @@ export const FlipLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '
         justifyContent: 'flex-start',
         alignItems: 'stretch'
     };
+
 
     return (
         <div
