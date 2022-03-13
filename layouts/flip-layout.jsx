@@ -31,7 +31,7 @@ export const FlipLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '
         flexDirection: useStack ? 'column' : 'row',
     };
 
-    return (
+    return !process.browser ? null : (
         <div
             style={{ ...styles, ...style }}
             className={`ak-${useStack ? 'stack' : 'row'} ${useStack ? stackClasses : rowClasses} ${className}`}
