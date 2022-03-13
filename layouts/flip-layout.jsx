@@ -21,8 +21,6 @@ export const FlipLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '
 
     const styles = {
         display: 'flex',
-        alignItems: 'stretch',
-        justifyContent: 'flex-start',
         flexDirection: useStack ? 'column' : 'row',
     };
 
