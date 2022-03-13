@@ -5,10 +5,11 @@ const NETWORKS = {
     instagram: { icon: 'instagram', urlPrefix: 'https://www.instagram.com/' },
     twitter: { icon: 'twitter', urlPrefix: 'https://www.twitter.com/' },
     soundcloud: { icon: 'soundcloud', urlPrefix: 'https://www.soundcloud.com/' },
-    facebook: { icon: 'facebook', urlPrefix: 'https://www.facebook.com/' },
+    facebookAlt: { icon: 'facebook-square', urlPrefix: 'https://www.facebook.com/' },
     youtube: { icon: 'youtube-play', urlPrefix: 'https://www.youtube.com/channel/' },
     spotify: { icon: 'spotify', urlPrefix: 'https://open.spotify.com/artist/' },
     email: { icon: 'envelope-square', urlPrefix: 'mailto:' },
+    apple: { icon: 'apple', urlPrefix: 'https://music.apple.com/us/artist/' },
     default: { icon: 'globe', urlPrefix: '' }
 };
 
