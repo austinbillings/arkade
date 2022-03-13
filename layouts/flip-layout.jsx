@@ -15,7 +15,7 @@ export const FlipLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '
         if (!process.browser) return;
 
         setUseStack(checkBreakpoint(breakPoint));
-    }, [(!process.browser || window.innerWidth]))
+    }, [(!process.browser || window.innerWidth)])
 
     const styles = {
         display: 'flex',
