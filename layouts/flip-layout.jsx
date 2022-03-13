@@ -1,3 +1,4 @@
+import { debounce } from 'utils/function-utils'
 import { useEffect, useState } from 'react'
 
 const checkBreakpoint = breakPoint => {
@@ -14,8 +15,18 @@ export const FlipLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '
     useEffect(() => {
         if (!process.browser) return;
 
-        setUseStack(checkBreakpoint(breakPoint));
-    }, [(!process.browser || window.innerWidth)])
+        function update () {
+            setUseStack(useState(checkBreakpoint(breakPoint)));
+        }
+
+        const updater = debounce(update);
+
+        window.addEventListener('resize', updater);
+
+        return () => {
+            window.removeEventListener('resize', updater);
+        }
+    }, [process.browser]);
 
     const styles = {
         display: 'flex',
