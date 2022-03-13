@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export const FlipLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '', className = '', style = {}, ...rest } = {}) => {
-    const useStack = !process.browser ? true : window.matchMedia(`only screen and (max-width: ${breakPoint}px)`).matches;
+    const useStack = !window ? true : window.matchMedia(`only screen and (max-width: ${breakPoint}px)`).matches;
     const styles = {
         display: 'flex',
         alignItems: 'stretch',
