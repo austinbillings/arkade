@@ -1,4 +1,4 @@
-import React, from 'react';
+import { useEffect, useState } from 'react'
 
 const checkBreakpoint = breakPoint => {
     try {
@@ -9,7 +9,16 @@ const checkBreakpoint = breakPoint => {
 }
 
 export const FlipLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '', className = '', style = {}, ...rest } = {}) => {
-    const useStack = checkBreakpoint(breakPoint);
+    const [useStack, setUseStack] = useState(checkBreakpoint(breakPoint));
+
+    useEffect(() => {
+        if (!process.browser) return;
+
+        const handler = () => setUseStack(checkBreakpoint(breakPoint));
+
+        window.addEventListener('resize', () => handler());
+    })
+
     const styles = {
         display: 'flex',
         alignItems: 'stretch',
