@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export const SwitchLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '', className = '', style = {}, ...rest } = {}) => {
+export const FlipLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '', className = '', style = {}, ...rest } = {}) => {
     const [windowWidth, setWindowWidth] = useState(process.browser ? window.innerWidth : 0)
 
     const handler = () => {
@@ -21,19 +21,19 @@ export const SwitchLayout = ({ breakPoint = 768, rowClasses = '', stackClasses =
         }
     });
 
-    const useColumn = process.browser ? windowWidth <= breakPoint : false;
+    const useStack = process.browser ? windowWidth <= breakPoint : false;
 
-    const switchStyles = {
+    const styles = {
         display: 'flex',
-        flexDirection: useColumn ? 'column' : 'row',
+        flexDirection: useStack ? 'column' : 'row',
         justifyContent: 'flex-start',
         alignItems: 'stretch'
     };
 
     return (
         <div
-            style={{ ...switchStyles, ...style }}
-            className={`ak-${useColumn ? 'stack' : 'row'} ${useColumn ? stackClasses : rowClasses} ${className}`}
+            style={{ ...styles, ...style }}
+            className={`ak-${useStack ? 'stack' : 'row'} ${useStack ? stackClasses : rowClasses} ${className}`}
             {...rest}
         />
     );
