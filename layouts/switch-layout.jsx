@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-export const SwitchLayout = ({ breakPoint = 768, className = '', style = {}, ...rest } = {}) => {
+export const SwitchLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '', className = '', style = {}, ...rest } = {}) => {
     const [windowWidth, setWindowWidth] = useState(process.browser ? window.innerWidth : 0)
 
+    const handler = () => {
+        console.log('handler running')
+        setWindowWidth(window.innerWidth)
+    }
+
     useEffect(() => {
-        const handler = () => {
-            setWindowWidth(window.innerWidth)
-        }
+        console.log('useEffect running')
+        handler();
 
         if (process.browser) {
             window.addEventListener('resize', handler)
@@ -17,7 +21,7 @@ export const SwitchLayout = ({ breakPoint = 768, className = '', style = {}, ...
         }
     });
 
-    const useColumn = windowWidth <= breakPoint;
+    const useColumn = process.browser ? windowWidth <= breakPoint : false;
 
     const switchStyles = {
         display: 'flex',
@@ -29,7 +33,7 @@ export const SwitchLayout = ({ breakPoint = 768, className = '', style = {}, ...
     return (
         <div
             style={{ ...switchStyles, ...style }}
-            className={`ak-${useColumn ? 'stack' : 'row'} ${className}`}
+            className={`ak-${useColumn ? 'stack' : 'row'} ${useColumn ? stackClasses : rowClasses} ${className}`}
             {...rest}
         />
     );
