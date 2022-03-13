@@ -16,7 +16,7 @@ export const FlipLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '
         if (!process.browser) return;
 
         function update () {
-            setUseStack(useState(checkBreakpoint(breakPoint)));
+            setUseStack(checkBreakpoint(breakPoint));
         }
 
         const updater = debounce(update);
