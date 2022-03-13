@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 export const FlipLayout = ({ breakPoint = 768, rowClasses = '', stackClasses = '', className = '', style = {}, ...rest } = {}) => {
     const [windowWidth, setWindowWidth] = useState(process.browser ? window.innerWidth : 0)
 
-    const handler = () => {
-        console.log('handler running')
-        setWindowWidth(window.innerWidth)
-    }
-
     useEffect(() => {
+        const handler = () => {
+            console.log('handler running')
+            if (window.innerWidth !== windowWidth) setWindowWidth(window.innerWidth)
+        }
+
         console.log('useEffect running')
 
         setTimeout(handler);
