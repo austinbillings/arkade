@@ -1,4 +1,4 @@
-import { debounce } from 'utils/function-utils'
+import { debounce } from '../utils/function-utils'
 import { useEffect, useState } from 'react'
 
 const checkBreakpoint = breakPoint => {
