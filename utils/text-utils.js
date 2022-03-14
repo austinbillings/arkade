@@ -115,3 +115,16 @@ export function stripHtmlTags (html, allowTags = [], keepAttributes = false) {
         return `<${isClosingTag ? '/' : ''}${checkableTagName}${isSelfClosingTag ? '/' : ''}>`;
     });
 }
+
+export function stripFromText (text, removals = []) {
+    return removals.reduce((output, removeableWord) => {
+        const lc = t => t.toLowerCase();
+        const foundIndex = lc(output).indexOf(lc(removeableWord))
+
+        return foundIndex !== -1
+            ? foundIndex === 0
+                ? output.substring(removeableWord.length)
+                : output.substring(0, foundIndex).concat(output.substring(foundIndex + removeableWord.length))
+            : output
+    }, text)
+}
