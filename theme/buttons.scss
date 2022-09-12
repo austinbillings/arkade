@@ -36,8 +36,8 @@
   }
 }
 
-@mixin buttonClass ($buttonName, $accent, $text-color: $white, $use-border: false, $use-variations: true) {
-    .btn.btn-#{$buttonName} {
+@mixin buttonClass ($buttonPrefix, $buttonName, $accent, $text-color: $white, $use-border: false, $use-variations: true) {
+    .btn.btn-#{$buttonPrefix}#{$buttonName} {
         color: $text-color;
         border: 1px solid $accent;
         background-color: $accent;
@@ -95,7 +95,13 @@
 
 @mixin buttonClasses ($list) {
   @each $buttonName, $buttonColors in $list {
-    @include buttonClass($buttonName, $buttonColors...);
+    @include buttonClass("", $buttonName, $buttonColors...);
+    @media (max-width: 768px) {
+      @include buttonClass("m-", $buttonName, $buttonColors...);
+    }
+    @media (min-width: 769px) {
+      @include buttonClass("d-", $buttonName, $buttonColors...);
+    }
   }
 }
 
