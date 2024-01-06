@@ -1,6 +1,6 @@
 {
   "name": "arkade",
-  "version": "0.4.33",
+  "version": "1.0.0",
   "description": "A toolkit to supercharge your ability to write great React apps.",
   "main": "index.js",
   "scripts": {
